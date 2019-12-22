@@ -6,8 +6,7 @@ export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      email: '',
+      username: '',
       password: '',
       message: ''
     };
@@ -28,8 +27,7 @@ export default class Register extends React.Component {
     e.preventDefault();
     registerUser({
       variables: {
-        name: this.state.name,
-        email: this.state.email,
+        username: this.state.username,
         password: this.state.password
       }
     });
@@ -49,13 +47,11 @@ export default class Register extends React.Component {
       >
         {registerUser => { 
           const message = this.state.message;
-          let nameError;
-          let emailError;
+          let usernameError;
           let passwordError;
 
           if (message) {
-            if (message.includes("Email")) emailError = "auth-error-outline";
-            if (message.includes("Name")) nameError = "auth-error-outline";
+            if (message.includes("Username")) usernameError = "auth-error-outline";
             if (message.includes("Password")) passwordError = "auth-error-outline";
           }
 
@@ -67,20 +63,12 @@ export default class Register extends React.Component {
                 onSubmit={ e => this.handleSubmit(e, registerUser) }
               >
 
-                <input 
-                  type="text" 
-                  value={this.state.name} 
-                  onChange={this.update("name")}
-                  placeholder="Name"
-                  className={`auth-input ${nameError}`}
-                />
-
                 <input
                   type="text"
                   value={this.state.email}
-                  onChange={this.update("email")}
-                  placeholder="Email"
-                  className={`auth-input ${emailError}`}
+                  onChange={this.update("username")}
+                  placeholder="Username"
+                  className={`auth-input ${usernameError}`}
                 />
 
                 <input

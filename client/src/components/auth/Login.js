@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from '../../graphql/mutations';
-import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
       message: ''
     };
@@ -19,7 +18,6 @@ class Login extends Component {
   }
 
   updateCache(client, { data }) {
-    console.log(data);
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn, currentUser: data.login._id }
     });
@@ -29,18 +27,8 @@ class Login extends Component {
     e.preventDefault();
     loginUser({
       variables: {
-        email: this.state.email,
+        username: this.state.username,
         password: this.state.password
-      }
-    });
-  }
-
-  demoLogin = (e, loginUser) => {
-    e.preventDefault();
-    loginUser({
-      variables: {
-        email: 'demoUser',
-        password: 'lola12'
       }
     });
   }
@@ -52,7 +40,7 @@ class Login extends Component {
         onCompleted={data => {
           const { token } = data.login;
           localStorage.setItem("auth-token", token);
-          this.props.history.push("/products");
+          this.props.history.push("/explore");
         }}
         onError={err => this.setState({ message: err.message })}
         update={(client, data) => this.updateCache(client, data)}
@@ -63,31 +51,34 @@ class Login extends Component {
           if (message) loginError = "auth-error-outline";
           if (message) message = "Invalid credentials";
 
-          return (<div className="container">
+          return (
+            <div className="auth-div">
 
-            <form 
-              className="auth-form"
-              onSubmit={e => this.handleSubmit(e, loginUser) }
-            >
-
-              <input
-                value={this.state.email}
-                onChange={this.update("email")}
-                placeholder="Email"
-                className={`auth-input ${loginError}`}
-              />
-              <input
-                value={this.state.password}
-                onChange={this.update("password")}
-                type="password"
-                placeholder="Password"
-                className={`auth-input ${loginError}`}
-              />
-              <button className="auth-button">Log In</button>
-
-              <p className="auth-error-messages">{message}</p>
-            </form>
-          </div>)
+              <form 
+                className="auth-form"
+                onSubmit={e => this.handleSubmit(e, loginUser) }
+              >
+  
+                <input
+                  value={this.state.username}
+                  onChange={this.update("username")}
+                  placeholder="Username"
+                  className={`auth-input ${loginError}`}
+                />
+  
+                <input
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                  placeholder="Password"
+                  className={`auth-input ${loginError}`}
+                />
+  
+                <button className="auth-button">Log In</button>
+                <p className="auth-error-messages">{message.slice(15)}</p>
+              </form>
+            </div>
+          )
         }}
       </Mutation>
     );

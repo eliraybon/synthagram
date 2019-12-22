@@ -18,14 +18,12 @@ const register = async data => {
     }
 
     const {
-      name,
-      email,
-      owner,
+      username,
       password
     } = data;
 
     const existingUser = await User.findOne({
-      email
+      username
     });
 
     if (existingUser) {
@@ -35,9 +33,7 @@ const register = async data => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = new User({
-        name,
-        email,
-        owner,
+        username,
         password: hashedPassword
       },
       err => {
@@ -100,12 +96,12 @@ const login = async data => {
   }
 
   const {
-    email,
+    username,
     password
   } = data
 
   const currentUser = await User.findOne({
-    email
+    username
   });
 
   if (!currentUser) {
@@ -115,7 +111,7 @@ const login = async data => {
   const validPassword = await bcrypt.compareSync(password, currentUser.password)
   
   if (!validPassword) {
-    throw new Error("invalid credentials");
+    throw new Error("Invalid credentials");
   };
 
   const token = jwt.sign({
@@ -135,11 +131,15 @@ const verifyUser = async data => {
     const {
       token
     } = data;
+
     const decoded = jwt.verify(token, keys.secretOrKey);
+
     const {
       id
     } = decoded;
+
     const user = await User.findById(id);
+
     let loggedIn;
     loggedIn = user ? true : false;
 
