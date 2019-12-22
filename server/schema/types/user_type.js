@@ -25,7 +25,7 @@ const UserType = new GraphQLObjectType({
     loggedIn: {
       type: GraphQLBoolean
     },
-    image: {
+    profileImg: {
       type: GraphQLString
     },
   })

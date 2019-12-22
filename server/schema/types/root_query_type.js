@@ -1,13 +1,8 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const UserType = require("./user_type");
 const User = mongoose.model("users");
-const ProductType = require('./product_type');
-const Product = mongoose.model("products");
-const ReviewType = require('./review_type');
-const Review = mongoose.model("reviews");
-const StoreType = require('./store_type');
-const Store = mongoose.model('stores');
+const UserType = require("./user_type");
+
 
 const {
   GraphQLObjectType,
@@ -20,7 +15,23 @@ const {
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
   fields: () => ({
-
+    users: {
+      type: new GraphQLList(UserType),
+      resolve() {
+        return User.find({});
+      }
+    },
+    user: {
+      type: UserType,
+      args: {
+        _id: {
+          type: new GraphQLNonNull(GraphQLID)
+        }
+      },
+      resolve(_, args) {
+        return User.findById(args._id);
+      }
+    },
   })
 });
 

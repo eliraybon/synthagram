@@ -14,7 +14,7 @@ const UserSchema = new Schema({
     min: 8,
     max: 32
   },
-  image: {
+  profileImg: {
     type: String
   },
   created: {

@@ -1,6 +1,9 @@
 const graphql = require("graphql");
 const AuthService = require('../services/auth');
 
+const UserType = require('./types/user_type');
+const User = require("../models/User");
+
 const { 
   GraphQLObjectType, 
   GraphQLString, 
