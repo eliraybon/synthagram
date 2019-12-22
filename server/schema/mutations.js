@@ -1,8 +1,11 @@
 const graphql = require("graphql");
 const AuthService = require('../services/auth');
-
-const UserType = require('./types/user_type');
 const User = require("../models/User");
+const UserType = require('./types/user_type');
+const Photo = require("../models/Photo");
+const PhotoType = require('./types/photo_type');
+const Comment = require("../models/Comment");
+const CommentType = require('./types/comment_type');
 
 const { 
   GraphQLObjectType, 
@@ -58,6 +61,45 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         return AuthService.verifyUser(args);
+      }
+    },
+    newPhoto: {
+      type: PhotoType,
+      args: {
+        photoUrl: { type: GraphQLString },
+        body: { type: GraphQLString },
+        user: { type: GraphQLID }
+      },
+      resolve(_, { photoUrl, body, user }) {
+        return Photo.postPhoto(photoUrl, body, user);
+      }
+    },
+    deletePhoto: {
+      type: PhotoType,
+      args: {
+        photoId: { type: GraphQLID }
+      },
+      resolve(_, { photoId }) {
+        return Photo.deletePhoto(photoId);
+      }
+    },
+    updatePhoto: {
+      type: PhotoType,
+      args: {
+        id: { type: GraphQLID },
+        body: { type: GraphQLString }
+      },
+      resolve(parentValue, { id, body }) {
+        const updateObj = {};
+        if (body) updateObj.body = body;
+
+        return Photo.findOneAndUpdate(
+          { _id: id }, 
+          { $set: updateObj }, 
+          { new: true, useFindAndModify: false }, 
+          (err, photo) => {
+          return photo;
+        });
       }
     },
   }
