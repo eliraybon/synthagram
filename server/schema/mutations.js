@@ -113,6 +113,15 @@ const mutation = new GraphQLObjectType({
       resolve(_, { body, author, photo, parentCommentId }) {
         return Comment.createComment(body, author, photo, parentCommentId);
       }
+    },
+    deleteComment: {
+      type: CommentType,
+      args: {
+        commentId: { type: GraphQLID }
+      },
+      resolve(_, { commentId }) {
+        return Comment.deleteComment(commentId);
+      }
     }
   }
 });

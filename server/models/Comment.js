@@ -54,4 +54,70 @@ CommentSchema.statics.createComment = (body, author, photo, parentCommentId) => 
   })
 }
 
+//forEach function that allows async-await 
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+};
+
+//helper function to remove a comment as well as clean-up references
+async function removeSingleComment(comment) {
+  const Comment = mongoose.model('comments');
+  const User = mongoose.model('users');
+  const Photo = mongoose.model('photos');
+
+  return Promise.all([
+    Comment.findByIdAndDelete(comment._id),
+    User.findById(comment.author),
+    Photo.findById(comment.photo),
+    Comment.findById(comment.parentComment)
+  ]).then(([comment, author, photo, parentComment]) => {
+    author.comments.pull(comment);
+    photo.comments.pull(comment);
+    if (parentComment) parentComment.replies.pull(comment);
+
+    if (parentComment) {
+      return Promise.all([
+        author.save(),
+        photo.save(),
+        parentComment.save()
+      ]).then(([author, photo, parentComment]) => comment)
+    } else {
+      return Promise.all([
+        author.save(),
+        photo.save()
+      ]).then(([author, photo]) => comment)
+    }
+  })
+}
+
+//function that recursively deletes a comment and all of its replies
+async function removeNestedReplies(rootComment) {
+  const Comment = mongoose.model('comments');
+  
+  if (!rootComment.replies.length) {
+    return removeSingleComment(rootComment)
+  }
+
+  asyncForEach(rootComment.replies, async (commentId) => {
+    const comment = await Comment.findById(commentId);
+    await removeNestedReplies(comment);
+    // await removeSingleComment(comment);
+  })
+
+  return removeSingleComment(rootComment);
+}
+
+
+CommentSchema.statics.deleteComment = commentId => {
+  const Comment = mongoose.model('comments');
+
+  return Comment.findById(commentId).then(comment => {
+    return removeNestedReplies(comment);
+  })
+}
+
+
+
 module.exports = mongoose.model("comments", CommentSchema);
