@@ -49,4 +49,32 @@ PhotoSchema.statics.deletePhoto = photoId => {
   })
 }
 
+PhotoSchema.statics.addLike = (photoId, userId) => {
+  const Photo = mongoose.model('photos');
+  const User = mongoose.model('users');
+
+  return Promise.all([Photo.findById(photoId), User.findById(userId)])
+    .then(([photo, user]) => {
+      photo.likes.push(user);
+      user.likes.push(photo);
+
+      return Promise.all([photo.save(), user.save()])
+        .then(([photo, user]) => photo);
+    })
+}
+
+PhotoSchema.statics.removeLike = (photoId, userId) => {
+  const Photo = mongoose.model('photos');
+  const User = mongoose.model('users');
+
+  return Promise.all([Photo.findById(photoId), User.findById(userId)])
+    .then(([photo, user]) => {
+      photo.likes.pull(user);
+      user.likes.pull(photo);
+
+      return Promise.all([photo.save(), user.save()])
+        .then(([photo, user]) => photo);
+    })
+}
+
 module.exports = mongoose.model("photos", PhotoSchema);

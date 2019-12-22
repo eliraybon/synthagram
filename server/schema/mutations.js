@@ -141,6 +141,26 @@ const mutation = new GraphQLObjectType({
             return comment;
           });
       }
+    },
+    addLike: {
+      type: PhotoType,
+      args: {
+        photoId: { type: GraphQLID },
+        userId: { type: GraphQLID }
+      },
+      resolve(parentValue, { photoId, userId }) {
+        return Photo.addLike(photoId, userId);
+      }
+    },
+    removeLike: {
+      type: PhotoType,
+      args: {
+        photoId: { type: GraphQLID },
+        userId: { type: GraphQLID }
+      },
+      resolve(parentValue, { photoId, userId }) {
+        return Photo.removeLike(photoId, userId);
+      }
     }
   }
 });
