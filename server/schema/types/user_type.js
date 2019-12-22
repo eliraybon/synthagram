@@ -51,6 +51,22 @@ const UserType = new GraphQLObjectType({
           .populate('comments')
           .then(user => user.comments)
       }
+    },
+    followers: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue) {
+        return User.findById(parentValue._id)
+          .populate('followers')
+          .then(user => user.followers)
+      }
+    },
+    followedUsers: {
+      type: new GraphQLList(UserType),
+      resolve(parentValue) {
+        return User.findById(parentValue._id)
+          .populate('followedUsers')
+          .then(user => user.followedUsers)
+      }
     }
   })
 });

@@ -21,6 +21,8 @@ const UserSchema = new Schema({
   photos: [{ type: Schema.Types.ObjectId, ref: "photos" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "photos" }],
   comments: [{ type: Schema.Types.ObjectId, ref: "comments" }],
+  followers: [{ type: Schema.Types.ObjectId, ref: "users"}],
+  followedUsers: [{ type: Schema.Types.ObjectId, ref: "users" }],
   created: {
     type: Date,
     default: Date.now
