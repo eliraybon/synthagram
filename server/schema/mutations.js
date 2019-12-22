@@ -161,6 +161,26 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { photoId, userId }) {
         return Photo.removeLike(photoId, userId);
       }
+    },
+    addFollow: {
+      type: UserType,
+      args: {
+        followingId: { type: GraphQLID },
+        userId: { type: GraphQLID } 
+      },
+      resolve(parentValue, { followingId, userId }) {
+        return User.addFollow(followingId, userId);
+      }
+    },
+    removeFollow: {
+      type: UserType,
+      args: {
+        unfollowingId: { type: GraphQLID },
+        userId: { type: GraphQLID }
+      },
+      resolve(parentValue, { unfollowingId, userId }) {
+        return User.removeFollow(unfollowingId, userId);
+      }
     }
   }
 });
