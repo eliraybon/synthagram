@@ -6,13 +6,19 @@ const CommentSchema = new Schema({
     type: String,
     required: true
   },
-  user: {
+  author: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
+    required: true
   },
   photo: {
     type: Schema.Types.ObjectId,
-    ref: "photos"
+    ref: "photos",
+    required: true
+  },
+  parentComment: {
+    type: Schema.Types.ObjectId,
+    ref: "comments",
   },
   replies: [{ type: Schema.Types.ObjectId, ref: "comments" }],
   created: {

@@ -11,7 +11,8 @@ const PhotoSchema = new Schema({
   },
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
+    required: true
   },
   likes: [{ type: Schema.Types.ObjectId, ref: "users" }],
   comments: [{ type: Schema.Types.ObjectId, ref: "comments" }],
