@@ -102,6 +102,18 @@ const mutation = new GraphQLObjectType({
         });
       }
     },
+    newComment: {
+      type: CommentType,
+      args: {
+        body: { type: GraphQLString },
+        author: { type: GraphQLID },
+        photo: { type: GraphQLID },
+        parentCommentId: { type: GraphQLID }
+      },
+      resolve(_, { body, author, photo, parentCommentId }) {
+        return Comment.createComment(body, author, photo, parentCommentId);
+      }
+    }
   }
 });
 
