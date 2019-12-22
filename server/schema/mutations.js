@@ -122,6 +122,25 @@ const mutation = new GraphQLObjectType({
       resolve(_, { commentId }) {
         return Comment.deleteComment(commentId);
       }
+    },
+    updateComment: {
+      type: CommentType,
+      args: {
+        id: { type: GraphQLID },
+        body: { type: GraphQLString }
+      },
+      resolve(parentValue, { id, body }) {
+        const updateObj = {};
+        if (body) updateObj.body = body;
+
+        return Comment.findOneAndUpdate(
+          { _id: id },
+          { $set: updateObj },
+          { new: true, useFindAndModify: false },
+          (err, comment) => {
+            return comment;
+          });
+      }
     }
   }
 });
