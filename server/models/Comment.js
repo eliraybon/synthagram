@@ -95,7 +95,7 @@ async function removeSingleComment(comment) {
 //function that recursively deletes a comment and all of its replies
 async function removeNestedReplies(rootComment) {
   const Comment = mongoose.model('comments');
-  
+
   if (!rootComment.replies.length) {
     return removeSingleComment(rootComment)
   }
@@ -103,7 +103,6 @@ async function removeNestedReplies(rootComment) {
   asyncForEach(rootComment.replies, async (commentId) => {
     const comment = await Comment.findById(commentId);
     await removeNestedReplies(comment);
-    // await removeSingleComment(comment);
   })
 
   return removeSingleComment(rootComment);
