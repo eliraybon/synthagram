@@ -1,18 +1,22 @@
 import React from "react";
-import { Route, Switch, Redirect } from 'react-router-dom';
-import Login from './auth/Login';
-import Register from './auth/Register';
+import { Route, Switch } from 'react-router-dom';
 import AuthRoute from '../util/route_util';
+
+import Register from './auth/Register';
+import Login from './auth/Login';
+import Nav from './ui/Nav';
 
 
 
 const App = () => {
   return (
-    <div>
+    <main>
+    <AuthRoute path="/" component={Nav} routeType="" />
       <Switch>
-
+        <AuthRoute exact path="/" component={Register} routeType="auth" />
+        <AuthRoute exact path="/login" component={Login} routeType="auth" />
       </Switch>
-    </div>
+    </main>
   );
 };
 

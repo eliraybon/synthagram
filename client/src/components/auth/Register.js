@@ -25,6 +25,7 @@ export default class Register extends React.Component {
 
   handleSubmit = (e, registerUser) => {
     e.preventDefault();
+    console.log(this.state);
     registerUser({
       variables: {
         username: this.state.username,
@@ -65,7 +66,7 @@ export default class Register extends React.Component {
 
                 <input
                   type="text"
-                  value={this.state.email}
+                  value={this.state.username}
                   onChange={this.update("username")}
                   placeholder="Username"
                   className={`auth-input ${usernameError}`}

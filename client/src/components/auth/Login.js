@@ -75,7 +75,7 @@ class Login extends Component {
                 />
   
                 <button className="auth-button">Log In</button>
-                <p className="auth-error-messages">{message.slice(15)}</p>
+                <p className="auth-error-messages">{message}</p>
               </form>
             </div>
           )

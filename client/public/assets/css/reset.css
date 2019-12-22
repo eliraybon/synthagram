@@ -18,11 +18,6 @@ span, article, footer, time, small {
   -webkit-font-smoothing: antialiased;
 }
 
-
-html {
-  background-image: linear-gradient(to bottom right, #E8D8F9, rgb(197, 177, 230));
-}
-
 ul {
   list-style: none;
 }
