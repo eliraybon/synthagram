@@ -7,6 +7,7 @@ const models = require("./models/models");
 const schema = require("./schema/schema");
 const cors = require("cors");
 const path = require('path');
+const uploads = require('./routes/file_upload');
 
 
 const app = express();
@@ -36,7 +37,6 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
-
 app.use(
   "/graphql",
   expressGraphQL(req => {
@@ -49,5 +49,7 @@ app.use(
     };
   })
 );
+
+app.use('/files', uploads);
 
 module.exports = app;
