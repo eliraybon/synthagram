@@ -5,6 +5,7 @@ import AuthRoute from '../util/route_util';
 import Register from './auth/Register';
 import Login from './auth/Login';
 import Nav from './ui/Nav';
+import PhotoForm from './photos/PhotoForm';
 
 
 
@@ -15,6 +16,7 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/" component={Register} routeType="auth" />
         <AuthRoute exact path="/login" component={Login} routeType="auth" />
+        <AuthRoute exact path="/upload" component={PhotoForm} routeType="protected" />
       </Switch>
     </main>
   );
