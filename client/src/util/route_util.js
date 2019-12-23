@@ -30,7 +30,7 @@ const AuthRoute = ({
                 data.isLoggedIn ? (
                   <Component {...props} />
                 ) : (
-                    <Redirect to="/login" />
+                    <Redirect to="/" />
                   )
               }
             />
