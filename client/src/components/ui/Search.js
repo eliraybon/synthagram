@@ -10,22 +10,23 @@ class Search extends React.Component {
     this.state = {
       users: [],
       filter: "",
-      empty: true
+      empty: true,
+      searching: false
     }
   }
 
   searchUsers = async (client, filter) => {
-    this.setState({ filter });
+    // this.setState({ filter, searching: true });
     if (filter.length === 0) {
-      this.setState({ users: [], empty: true });
+      this.setState({ users: [], empty: true, filter });
       return null;
     } else {
-      this.setState({ empty: false });
+      this.setState({ empty: false, searching: true });
       const { data } = await client.query({ 
         query: SEARCH_USERS, 
         variables: { filter } 
       });
-      this.setState({ users: data.searchUsers})
+      this.setState({ users: data.searchUsers, searching: false })
     }
   }
 
@@ -44,7 +45,7 @@ class Search extends React.Component {
           </Link>
         )
       })
-    } else if (this.state.empty !== true) {
+    } else if (this.state.empty !== true && !this.state.searching) {
       return <li className="results">No users found</li>
     }
   }
