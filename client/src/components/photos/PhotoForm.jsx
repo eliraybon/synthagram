@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 import { Query, Mutation } from 'react-apollo';
 
 import { CURRENT_USER } from '../../graphql/queries';
@@ -11,7 +12,9 @@ export default class PhotoForm extends React.Component {
     this.state = {
       body: '',
       photoUrl: null,
-      user: null
+      user: null,
+      content: null,
+      message: null
     };
   }
 
@@ -36,15 +39,48 @@ export default class PhotoForm extends React.Component {
             });
         })
     } else {
-      this.props.processForm(this.state)
-        .then(() => {
-          this.props.history.push('/explore')
-        });
+      this.setState({ message: "Please upload a photo" });
     }
   }
 
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
+  }
+
+  validateFile = file => {
+    const validTypes = [
+      'image/x-png',
+      'image/png',
+      'image/jpg',
+      'image/jpeg',
+      'image/gif'
+    ];
+
+    const fileSize = file.size;
+    const fileType = file.type;
+    if (fileSize > 1000000000) return false;
+    if (!validTypes.includes(fileType)) return false;
+    return true;
+  }
+
+  onDrop = async files => {
+    //original simple code: 
+    // this.setState({ content: files[0] });
+
+    const file = files[0]
+    if (!this.validateFile(file)) {
+      this.setState({ message: "Invalid file", previewImg: null });
+      return;
+    }
+
+    this.setState({ content: file });
+    const reader = new FileReader();
+
+    reader.addEventListener("load", () => {
+      this.setState({ previewImg: reader.result })
+    }, false)
+
+    reader.readAsDataURL(file);
   }
 
   handleFile = e => {
@@ -85,16 +121,34 @@ export default class PhotoForm extends React.Component {
                     placeholder='Body'
                   />
 
+                  <Dropzone onDrop={this.onDrop}>
+                    {({ getRootProps, getInputProps }) => (
+                      <div {...getRootProps()} className="dropzone">
+                        <input {...getInputProps()} />
+                        Drag and Drop Here
 
-                  <input
+                        {this.state.previewImg && (
+                          <img
+                            src={this.state.previewImg}
+                            className="preview-image"
+                            alt=""
+                          />
+                        )}
+                      </div>
+                    )}
+                  </Dropzone>
+                  
+                  {/* <input
                     className='post-media-input'
                     type="file"
                     onChange={this.handleFile}
-                  />
+                  /> */}
 
                   <button className='post-form-button'>
                     Post
                   </button>
+
+                  <p>{this.state.message}</p>
                 </form>
               )}
             </Mutation>
