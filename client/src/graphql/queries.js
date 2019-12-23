@@ -11,3 +11,12 @@ export const CURRENT_USER = gql`
     currentUser @client
   }
 `;
+
+export const SEARCH_USERS = gql`
+  query SearchUsers($filter: String!) {
+    searchUsers(filter: $filter) {
+      _id
+      username
+    }
+  }
+`;

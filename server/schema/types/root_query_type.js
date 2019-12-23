@@ -70,6 +70,17 @@ const RootQueryType = new GraphQLObjectType({
         return Comment.findById(args._id);
       }
     },
+    searchUsers: {
+      type: new GraphQLList(UserType),
+      args: {
+        filter: { 
+          type: GraphQLString
+        }
+      },
+      resolve(_, args) {
+        return User.find({ username: { $regex: args.filter, $options: "i" } });
+      }
+    },
   })
 });
 

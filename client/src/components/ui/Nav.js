@@ -2,6 +2,7 @@ import React from 'react';
 import { ApolloConsumer } from "react-apollo";
 import { Link, withRouter } from 'react-router-dom';
 import { CURRENT_USER } from "../../graphql/queries";
+import Search from './Search';
 
 
 class Nav extends React.Component {
@@ -23,11 +24,7 @@ class Nav extends React.Component {
           </Link>
         </div>
 
-        <div className="search">
-          <input 
-            placeholder="Search"
-          />
-        </div>  
+        <Search />
 
         <div className="nav-buttons">
 
@@ -71,7 +68,7 @@ class Nav extends React.Component {
                   e.preventDefault();
                   localStorage.removeItem("auth-token");
                   client.writeData({ data: { isLoggedIn: false } });
-                  this.props.history.push("/");
+                  this.props.history.push("/login");
                 }}
               >
                 Logout
