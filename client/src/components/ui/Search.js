@@ -12,11 +12,10 @@ class Search extends React.Component {
       filter: "",
       empty: true,
       searching: false
-    }
+    };
   }
 
   searchUsers = async (client, filter) => {
-    // this.setState({ filter, searching: true });
     if (filter.length === 0) {
       this.setState({ users: [], empty: true, filter });
       return null;
@@ -26,7 +25,7 @@ class Search extends React.Component {
         query: SEARCH_USERS, 
         variables: { filter } 
       });
-      this.setState({ users: data.searchUsers, searching: false })
+      this.setState({ users: data.searchUsers, searching: false });
     }
   }
 
