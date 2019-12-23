@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import { LOGIN_USER } from '../../graphql/mutations';
+import { Link } from 'react-router-dom';
 
 class Login extends Component {
   constructor(props) {
@@ -58,6 +59,8 @@ class Login extends Component {
                 className="auth-form"
                 onSubmit={e => this.handleSubmit(e, loginUser) }
               >
+
+                <h1>Synthagram</h1>
   
                 <input
                   value={this.state.username}
@@ -77,6 +80,14 @@ class Login extends Component {
                 <button className="auth-button">Log In</button>
                 <p className="auth-error-messages">{message}</p>
               </form>
+
+              <div>
+                <p>Don't have an account? 
+                  <Link to="/register">
+                    Sign Up
+                  </Link>
+                </p>
+              </div>
             </div>
           )
         }}

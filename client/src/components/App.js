@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import AuthRoute from '../util/route_util';
 
 import Register from './auth/Register';
@@ -14,9 +14,9 @@ const App = () => {
     <main>
     <AuthRoute path="/" component={Nav} routeType="" />
       <Switch>
-        <AuthRoute exact path="/" component={Register} routeType="auth" />
-        <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/upload" component={PhotoForm} routeType="protected" />
+        <AuthRoute exact path="/" component={Login} routeType="auth" />
+        <AuthRoute exact path="/register" component={Register} routeType="auth" />
+        <AuthRoute exact path="/post" component={PhotoForm} routeType="protected" />
       </Switch>
     </main>
   );

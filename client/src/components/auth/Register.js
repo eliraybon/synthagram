@@ -1,6 +1,7 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { REGISTER_USER } from '../../graphql/mutations';
+import { Link } from 'react-router-dom';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -64,6 +65,8 @@ export default class Register extends React.Component {
                 onSubmit={ e => this.handleSubmit(e, registerUser) }
               >
 
+                <h1>Synthagram</h1>
+
                 <input
                   type="text"
                   value={this.state.username}
@@ -84,6 +87,14 @@ export default class Register extends React.Component {
 
                 <p className="auth-error-messages">{this.state.message.slice(15)}</p>
               </form>
+
+              <div>
+                <p>Already have an account?
+                  <Link to="/">
+                    Log In
+                  </Link>
+                </p>
+              </div>
             </div>
           )
         }}
