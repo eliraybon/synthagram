@@ -15,7 +15,12 @@ class FeedIndexItem extends React.Component {
 
   handleTap = photoId => {
     if (this.state.tapped) {
-      document.getElementById(`toggle-like-${photoId}`).click();
+      const likeButton = document.getElementById(`toggle-like-${photoId}`);
+      likeButton.click();
+      if (!likeButton.children[0].classList[2]) {
+        this.setState({ justLiked: true });
+        setTimeout(() => this.setState({ justLiked: false }) ,1000);
+      }
     } else {
       this.setState({ tapped: true });
       setTimeout(() => this.setState({ tapped: false }), 500);
@@ -158,8 +163,10 @@ class FeedIndexItem extends React.Component {
           src={photo.photoUrl}
         />
         <div className="feed-item-bottom">
-          
-
+          {this.state.justLiked && (
+            <p>heart</p>
+          )}
+         
           <div className="feed-item-buttons">
             <div className="feed-item-buttons-left">
               {this.renderLikeButton()}
