@@ -6,6 +6,27 @@ import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
 import { withRouter, Link } from 'react-router-dom';
 
 class FeedIndexItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tapped: false
+    };
+  }
+
+  handleTap = photoId => {
+    if (this.state.tapped) {
+      const likeButton = document.getElementById(`toggle-like-${photoId}`);
+      likeButton.click();
+      if (!likeButton.children[0].classList[2]) {
+        this.setState({ justLiked: true });
+        setTimeout(() => this.setState({ justLiked: false }) ,1000);
+      }
+    } else {
+      this.setState({ tapped: true });
+      setTimeout(() => this.setState({ tapped: false }), 500);
+    }
+  }
+
   handleLike = (e, addLike) => {
     e.preventDefault();
     addLike({
@@ -35,6 +56,33 @@ class FeedIndexItem extends React.Component {
     })
   }
 
+  updateCache(cache, currentUser, deletedPhoto) {
+    deletedPhoto = deletedPhoto.data.data.deletePhoto;
+
+    let photos;
+    try {
+      photos = cache.readQuery({
+        query: FEED,
+        variables: {
+          currentUserId: currentUser
+        }
+      });
+    } catch (err) {
+      return;
+    }
+
+    if (photos) {
+      let feed = photos.feed;
+      const newFeed = feed.filter(photo => photo._id !== deletedPhoto._id);
+      debugger;
+      cache.writeQuery({
+        query: FEED,
+        variables: { currentUserId: currentUser },
+        data: { feed: newFeed }
+      });
+    }
+  }
+
   renderLikeButton = () => {
     const { photo, currentUser } = this.props;
 
@@ -44,7 +92,10 @@ class FeedIndexItem extends React.Component {
           mutation={ADD_LIKE}
         >
           {addLike => (
-            <button onClick={(e => this.handleLike(e, addLike))}>
+            <button 
+              id={`toggle-like-${photo._id}`}
+              onClick={(e => this.handleLike(e, addLike))}
+            >
               <i className="fas fa-music"></i>
             </button>
           )}
@@ -56,7 +107,10 @@ class FeedIndexItem extends React.Component {
           mutation={REMOVE_LIKE}
         >
           {removeLike => (
-            <button onClick={(e => this.handleLike(e, removeLike))}>
+            <button 
+              id={`toggle-like-${photo._id}`}
+              onClick={(e => this.handleLike(e, removeLike))}
+            >
               <i className="fas fa-music liked"></i>
             </button>
           )}
@@ -71,14 +125,15 @@ class FeedIndexItem extends React.Component {
       return (
         <Mutation
           mutation={DELETE_PHOTO}
-          refetchQueries={[
-            {
-              query: FEED,
-              variables: {
-                currentUserId: this.props.currentUser
-              }
-            }
-          ]}
+          update={(cache, data) => this.updateCache(cache, currentUser, { data })}
+          // refetchQueries={[
+          //   {
+          //     query: FEED,
+          //     variables: {
+          //       currentUserId: this.props.currentUser
+          //     }
+          //   }
+          // ]}
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>
@@ -104,11 +159,14 @@ class FeedIndexItem extends React.Component {
           <p className="feed-item-username">{photo.user.username}</p>
         </div>
         <img
+          onClick={() => this.handleTap(photo._id)}
           src={photo.photoUrl}
         />
         <div className="feed-item-bottom">
-          
-
+          {this.state.justLiked && (
+            <p>heart</p>
+          )}
+         
           <div className="feed-item-buttons">
             <div className="feed-item-buttons-left">
               {this.renderLikeButton()}
@@ -123,12 +181,12 @@ class FeedIndexItem extends React.Component {
 
           <p className="feed-item-likes-count">{photo.likes.length} likes</p>
 
-          <p className="feed-item-body">
+          <div className="feed-item-body">
             <div className="feed-item-body-username">
               <Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link>
             </div>
             {photo.body}
-          </p>
+          </div>
         </div>
         {/* <CommentIndex comments={rootComments} /> */}
       </li>
