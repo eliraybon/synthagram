@@ -6,6 +6,22 @@ import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
 import { withRouter, Link } from 'react-router-dom';
 
 class FeedIndexItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tapped: false
+    };
+  }
+
+  handleTap = photoId => {
+    if (this.state.tapped) {
+      document.getElementById(`toggle-like-${photoId}`).click();
+    } else {
+      this.setState({ tapped: true });
+      setTimeout(() => this.setState({ tapped: false }), 500);
+    }
+  }
+
   handleLike = (e, addLike) => {
     e.preventDefault();
     addLike({
@@ -71,7 +87,10 @@ class FeedIndexItem extends React.Component {
           mutation={ADD_LIKE}
         >
           {addLike => (
-            <button onClick={(e => this.handleLike(e, addLike))}>
+            <button 
+              id={`toggle-like-${photo._id}`}
+              onClick={(e => this.handleLike(e, addLike))}
+            >
               <i className="fas fa-music"></i>
             </button>
           )}
@@ -83,7 +102,10 @@ class FeedIndexItem extends React.Component {
           mutation={REMOVE_LIKE}
         >
           {removeLike => (
-            <button onClick={(e => this.handleLike(e, removeLike))}>
+            <button 
+              id={`toggle-like-${photo._id}`}
+              onClick={(e => this.handleLike(e, removeLike))}
+            >
               <i className="fas fa-music liked"></i>
             </button>
           )}
@@ -132,6 +154,7 @@ class FeedIndexItem extends React.Component {
           <p className="feed-item-username">{photo.user.username}</p>
         </div>
         <img
+          onClick={() => this.handleTap(photo._id)}
           src={photo.photoUrl}
         />
         <div className="feed-item-bottom">
