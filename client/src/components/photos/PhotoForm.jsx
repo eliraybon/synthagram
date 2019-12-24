@@ -23,10 +23,10 @@ export default class PhotoForm extends React.Component {
     if (this.state.content) {
       const formData = new FormData();
       formData.append('photo', this.state.content, this.state.content.name);
-      debugger;
+
       axios.post('http://localhost:5000/files/upload', formData)
         .then(res => {
-          debugger;
+
           this.setState({ photoUrl: res.data.photoUrl });
           newPhoto({
             variables: {
@@ -137,12 +137,6 @@ export default class PhotoForm extends React.Component {
                       </div>
                     )}
                   </Dropzone>
-                  
-                  {/* <input
-                    className='post-media-input'
-                    type="file"
-                    onChange={this.handleFile}
-                  /> */}
 
                   <button className='post-form-button'>
                     Post
