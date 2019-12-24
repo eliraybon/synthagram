@@ -97,13 +97,13 @@ const RootQueryType = new GraphQLObjectType({
     explorePhotos: {
       type: new GraphQLList(PhotoType),
       resolve() {
-        return Photo.find({}).slice(0, 10);
+        return Photo.find({});
       }
     },
     exploreUsers: {
       type: new GraphQLList(UserType),
       resolve() {
-        return User.find({}).slice(0, 10);
+        return User.find({});
       }
     }
   })
