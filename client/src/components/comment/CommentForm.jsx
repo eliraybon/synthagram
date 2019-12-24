@@ -6,8 +6,10 @@ import { FEED } from '../../graphql/queries';
 export default class CommentForm extends React.Component {
   constructor(props) {
     super(props);
+    let body = (props.parentComment) ? 
+      '@' + props.parentComment.author.username : '';
     this.state = {
-      body: ''
+      body
     };
   }
 
@@ -20,6 +22,10 @@ export default class CommentForm extends React.Component {
   handleSubmit = (e, newComment) => {
     e.preventDefault();
     const body = this.state.body.trim();
+   
+    let parentComment = (this.props.parentComment) ? 
+      this.props.parentComment._id : null
+
     if (body) {
       this.setState({ body: '' });
       newComment({
@@ -27,7 +33,7 @@ export default class CommentForm extends React.Component {
           body: this.state.body,
           author: this.props.currentUser,
           photo: this.props.photoId,
-          parentComment: this.props.parentComment || null
+          parentCommentId: parentComment
         }
       })
     } else {
@@ -67,6 +73,12 @@ export default class CommentForm extends React.Component {
               </button>
               
             </form>
+
+            {this.props.parentComment && (
+              <button onClick={this.props.cancelReply}>
+                Cancel reply 
+              </button>
+            )}
           </div>
         )}
       </Mutation>

@@ -17,6 +17,7 @@ export default class CommentIndex extends React.Component {
                 <CommentIndexItem 
                   comment={comment} 
                   currentUser={currentUser}
+                  setReplyForm={this.props.setReplyForm}
                   key={comment._id} 
                 />
               )
@@ -30,11 +31,12 @@ export default class CommentIndex extends React.Component {
       return (
         <ul className="comment-index">
           {comments.map(comment => {
-            //commentId will only be pased into props when a comment renders a comment index
             if (comment.parentComment._id === this.props.commentId) {
               return (
                 <CommentIndexItem
                   comment={comment}
+                  currentUser={currentUser}
+                  setReplyForm={this.props.setReplyForm}
                   key={comment._id}
                 />
               )
