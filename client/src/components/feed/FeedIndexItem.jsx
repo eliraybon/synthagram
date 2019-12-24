@@ -35,6 +35,33 @@ class FeedIndexItem extends React.Component {
     })
   }
 
+  updateCache(cache, currentUser, deletedPhoto) {
+    deletedPhoto = deletedPhoto.data.data.deletePhoto;
+
+    let photos;
+    try {
+      photos = cache.readQuery({
+        query: FEED,
+        variables: {
+          currentUserId: currentUser
+        }
+      });
+    } catch (err) {
+      return;
+    }
+
+    if (photos) {
+      let feed = photos.feed;
+      const newFeed = feed.filter(photo => photo._id !== deletedPhoto._id);
+      debugger;
+      cache.writeQuery({
+        query: FEED,
+        variables: { currentUserId: currentUser },
+        data: { feed: newFeed }
+      });
+    }
+  }
+
   renderLikeButton = () => {
     const { photo, currentUser } = this.props;
 
@@ -71,14 +98,15 @@ class FeedIndexItem extends React.Component {
       return (
         <Mutation
           mutation={DELETE_PHOTO}
-          refetchQueries={[
-            {
-              query: FEED,
-              variables: {
-                currentUserId: this.props.currentUser
-              }
-            }
-          ]}
+          update={(cache, data) => this.updateCache(cache, currentUser, { data })}
+          // refetchQueries={[
+          //   {
+          //     query: FEED,
+          //     variables: {
+          //       currentUserId: this.props.currentUser
+          //     }
+          //   }
+          // ]}
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>

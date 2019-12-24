@@ -46,6 +46,32 @@ export default class PhotoForm extends React.Component {
     }
   }
 
+  updateCache(cache, newPhoto) {
+    newPhoto = newPhoto.data.data.newPhoto;
+    newPhoto.likes = [];
+
+    let photos;
+    try {
+      photos = cache.readQuery({ 
+        query: FEED,
+        variables: {
+          currentUserId: this.state.user
+        }
+      });
+    } catch (err) {
+      return;
+    }
+
+    if (photos) {
+      let feed = photos.feed;
+      cache.writeQuery({
+        query: FEED,
+        variables: { currentUserId: this.state.user },
+        data: { feed: [newPhoto].concat(feed) }
+      });
+    }
+  }
+
   update(field) {
     return e => this.setState({ [field]: e.currentTarget.value });
   }
@@ -107,14 +133,15 @@ export default class PhotoForm extends React.Component {
           return (
             <Mutation
               mutation={NEW_PHOTO}
-              refetchQueries={[
-                {
-                  query: FEED,
-                  variables: {
-                    currentUserId: this.state.user
-                  }
-                }
-              ]}
+              update={(cache, data) => this.updateCache(cache, { data })}
+              // refetchQueries={[
+              //   {
+              //     query: FEED,
+              //     variables: {
+              //     currentUserId: this.state.user
+              //     }
+              //   }
+              // ]}
             >
               {newPhoto => (
                 <form
