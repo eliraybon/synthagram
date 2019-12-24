@@ -1,0 +1,75 @@
+.feed-container {
+
+}
+
+.feed {
+  max-width: 500px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+
+.feed-index-item {
+  background-color: white;
+  width: 500px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  border: 1px solid rgb(222, 222, 222);
+}
+
+.feed-item-top {
+  display: flex;
+  align-items: center;
+  padding: 7px 15px;
+}
+
+.feed-item-profile-photo {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  background-color: rgb(158, 116, 184);
+}
+
+.feed-index-item img {
+  max-width: 100%;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+}
+
+.feed-item-username {
+  padding: 15px;
+  font-size: 18px;
+}
+
+.feed-item-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  padding-bottom: 20px;
+}
+
+.feed-item-body {
+  margin-bottom: 10px;
+}
+
+.feed-item-likes-count {
+  color: gray;
+}
+
+@media only screen and (max-width: 500px) {
+
+  .feed {
+    width: 100%;
+  }
+
+  .feed-index-item {
+    width: 100%;
+    border: none;
+  }
+
+  .feed-index-item img {
+    max-width: 100%;
+    height: 100vw;
+  }
+}
