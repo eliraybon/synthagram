@@ -65,7 +65,7 @@ export default class Register extends React.Component {
                 onSubmit={ e => this.handleSubmit(e, registerUser) }
               >
 
-                <h1>Synthagram</h1>
+                <h1 className="auth-form-header">Synthagram</h1>
 
                 <input
                   type="text"
@@ -88,9 +88,12 @@ export default class Register extends React.Component {
                 <p className="auth-error-messages">{this.state.message.slice(15)}</p>
               </form>
 
-              <div>
-                <p>Already have an account?
-                  <Link to="/">
+              <div className="auth-form-bottom">
+                <p>Already have an account? 
+                  <Link 
+                    to="/"
+                    className="auth-form-link"
+                  >
                     Log In
                   </Link>
                 </p>
