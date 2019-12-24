@@ -1,8 +1,9 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { UPDATE_COMMENT } from '../../graphql/mutations';
+import { FEED } from '../../graphql/queries';
 
-export default class CommentForm extends React.Component {
+export default class EditCommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,12 +17,13 @@ export default class CommentForm extends React.Component {
 
   handleSubmit = (e, updateComment) => {
     e.preventDefault();
+    debugger;
     updateComment({
       variables: {
         id: this.props.commentId,
         body: this.state.body,
       }
-    })
+    }).then(() => this.props.finishEdit())
   }
 
   render() {
@@ -30,23 +32,29 @@ export default class CommentForm extends React.Component {
         mutation={UPDATE_COMMENT}
       >
         {updateComment => (
-          <form
-            className='comment-form'
-            onSubmit={e => this.handleSubmit(e, updateComment)}
-          >
+          <div>
+            <form
+              className='comment-form'
+              onSubmit={e => this.handleSubmit(e, updateComment)}
+            >
 
-            <textarea
-              className='form-input'
-              value={this.state.body}
-              onChange={this.update('body')}
-              placeholder='Edit your comment'
-            />
+              <textarea
+                className='form-input'
+                value={this.state.body}
+                onChange={this.update('body')}
+                placeholder='Edit your comment'
+              />
 
-            <button className='comment-form-button'>
-              Edit
+              <button className='comment-form-button'>
+                Edit
+              </button>
+
+            </form>
+
+            <button onClick={this.props.finishEdit}>
+              Cancel
             </button>
-
-          </form>
+          </div>
         )}
       </Mutation>
     )

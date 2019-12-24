@@ -149,7 +149,7 @@ class FeedIndexItem extends React.Component {
 
   render() {
     const { photo, currentUser } = this.props;
-    debugger;
+
     return (
       <li className="feed-index-item">
         <div className="feed-item-top">

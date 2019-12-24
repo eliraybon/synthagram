@@ -4,7 +4,7 @@ import CommentIndexItem from './CommentIndexItem';
 export default class CommentIndex extends React.Component {
   render() {
     const { comments, context, currentUser } = this.props;
-    debugger;
+
     if (!comments) return null;
 
     if (context === "photo") {

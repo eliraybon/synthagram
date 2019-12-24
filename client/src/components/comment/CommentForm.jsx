@@ -42,23 +42,25 @@ export default class CommentForm extends React.Component {
         ]}
       >
         {newComment => (
-          <form
-            className='comment-form'
-            onSubmit={e => this.handleSubmit(e, newComment)}
-          >
+          <div>
+            <form
+              className='comment-form'
+              onSubmit={e => this.handleSubmit(e, newComment)}
+            >
 
-            <textarea
-              className='form-input'
-              value={this.state.body}
-              onChange={this.update('body')}
-              placeholder='Leave a comment'
-            />
+              <textarea
+                className='form-input'
+                value={this.state.body}
+                onChange={this.update('body')}
+                placeholder='Leave a comment'
+              />
 
-            <button className='comment-form-button'>
-              Comment
-            </button>
-
-          </form>
+              <button className='comment-form-button'>
+                Comment
+              </button>
+              
+            </form>
+          </div>
         )}
       </Mutation>
     )
