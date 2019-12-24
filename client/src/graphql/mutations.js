@@ -69,3 +69,37 @@ export const DELETE_PHOTO = gql`
     }
   }
 `;
+
+export const NEW_COMMENT = gql`
+  mutation NewComment($body: String!, $author: ID!, $photo: ID!, $parentCommentId: ID) {
+    newComment(body: $body, author: $author, photo: $photo, parentCommentId: $parentCommentId) {
+      _id
+      body
+      author {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const UPDATE_COMMENT = gql`
+  mutation UpdateComment($id: ID!, $body: String!) {
+    updateComment(id: $id, body: $body) {
+      _id
+      body
+      author {
+        _id
+        username
+      }
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation DeleteComment($commentId: ID!) {
+    deleteComment(commentId: $commentId) {
+      _id
+    }
+  }
+`;

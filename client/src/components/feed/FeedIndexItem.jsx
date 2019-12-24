@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentIndex from '../comment/CommentIndex';
+import CommentForm from '../comment/CommentForm';
 import { Mutation } from 'react-apollo';
 import { FEED } from '../../graphql/queries';
 import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
@@ -74,7 +75,7 @@ class FeedIndexItem extends React.Component {
     if (photos) {
       let feed = photos.feed;
       const newFeed = feed.filter(photo => photo._id !== deletedPhoto._id);
-      debugger;
+
       cache.writeQuery({
         query: FEED,
         variables: { currentUserId: currentUser },
@@ -148,7 +149,6 @@ class FeedIndexItem extends React.Component {
 
   render() {
     const { photo, currentUser } = this.props;
-    // const rootComments = photo.comments.filter(comment => comment.parentComment === null);
 
     return (
       <li className="feed-index-item">
@@ -188,7 +188,16 @@ class FeedIndexItem extends React.Component {
             {photo.body}
           </div>
         </div>
-        {/* <CommentIndex comments={rootComments} /> */}
+        <CommentIndex 
+          comments={photo.comments} 
+          context="photo" 
+          currentUser={currentUser}
+        />
+
+        <CommentForm 
+          currentUser={currentUser}
+          photoId={photo._id}
+        />
       </li>
     )
   }
