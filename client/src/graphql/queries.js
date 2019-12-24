@@ -32,6 +32,14 @@ export const FEED = gql`
         username
       }
       likes
+      comments {
+        _id
+        body
+        author {
+          _id
+          username
+        }
+      }
     }
   }
 `;
