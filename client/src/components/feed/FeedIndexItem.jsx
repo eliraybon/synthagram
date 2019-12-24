@@ -8,7 +8,6 @@ import { withRouter } from 'react-router-dom';
 class FeedIndexItem extends React.Component {
   handleLike = (e, addLike) => {
     e.preventDefault();
-    debugger;
     addLike({
       variables: {
         photoId: this.props.photo._id,

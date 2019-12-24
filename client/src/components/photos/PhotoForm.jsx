@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { Query, Mutation } from 'react-apollo';
 
-import { CURRENT_USER } from '../../graphql/queries';
+import { CURRENT_USER, FEED } from '../../graphql/queries';
 import { NEW_PHOTO } from '../../graphql/mutations';
 
 export default class PhotoForm extends React.Component {
@@ -14,12 +14,15 @@ export default class PhotoForm extends React.Component {
       photoUrl: null,
       user: null,
       content: null,
-      message: null
+      message: null,
+      submitted: false
     };
   }
 
   handleSubmit = (e, newPhoto) => {
     e.preventDefault();
+    if (this.state.submitted) return;
+    this.setState({ submitted: true });
     if (this.state.content) {
       const formData = new FormData();
       formData.append('photo', this.state.content, this.state.content.name);
@@ -69,7 +72,7 @@ export default class PhotoForm extends React.Component {
 
     const file = files[0]
     if (!this.validateFile(file)) {
-      this.setState({ message: "Invalid file", previewImg: null });
+      this.setState({ message: "Invalid file", previewImg: null, content: null });
       return;
     }
 
@@ -104,6 +107,14 @@ export default class PhotoForm extends React.Component {
           return (
             <Mutation
               mutation={NEW_PHOTO}
+              refetchQueries={[
+                {
+                  query: FEED,
+                  variables: {
+                    currentUserId: this.state.user
+                  }
+                }
+              ]}
             >
               {newPhoto => (
                 <form
