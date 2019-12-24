@@ -39,6 +39,20 @@ export const FEED = gql`
           _id
           username
         }
+        parentComment {
+          _id
+        }
+        replies {
+          _id
+          body
+          author {
+            _id
+            username
+          }
+          parentComment {
+            _id
+          }
+        }
       }
     }
   }

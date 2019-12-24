@@ -10,7 +10,8 @@ class FeedIndexItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tapped: false
+      tapped: false,
+      parentComment: null
     };
   }
 
@@ -26,6 +27,14 @@ class FeedIndexItem extends React.Component {
       this.setState({ tapped: true });
       setTimeout(() => this.setState({ tapped: false }), 500);
     }
+  }
+
+  setReplyForm = parentComment => {
+    this.setState({ parentComment });
+  }
+
+  cancelReply = () => {
+    this.setState({ parentComment: null });
   }
 
   handleLike = (e, addLike) => {
@@ -192,12 +201,31 @@ class FeedIndexItem extends React.Component {
           comments={photo.comments} 
           context="photo" 
           currentUser={currentUser}
+          setReplyForm={this.setReplyForm}
         />
 
-        <CommentForm 
-          currentUser={currentUser}
-          photoId={photo._id}
-        />
+        {
+          //This isn't very dry, but React wasn't rerending the form when the 
+          //parentComment changed in the state. To fix it I used 
+          //this.state.parentComment directly (209 & 217) and it rerenders.
+          //Find a cleaner fix later. 
+        }
+        {this.state.parentComment && (
+          <CommentForm
+            currentUser={currentUser}
+            photoId={photo._id}
+            parentComment={this.state.parentComment || null}
+            cancelReply={this.cancelReply}
+          />
+        )}
+
+        {!this.state.parentComment && (
+          <CommentForm
+            currentUser={currentUser}
+            photoId={photo._id}
+            parentComment={this.state.parentComment || null}
+          />
+        )}
       </li>
     )
   }
