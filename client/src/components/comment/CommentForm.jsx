@@ -35,6 +35,8 @@ export default class CommentForm extends React.Component {
           photo: this.props.photoId,
           parentCommentId: parentComment
         }
+      }).then(() => {
+        if (this.props.cancelReply) this.props.cancelReply();
       })
     } else {
       //add error messages here 

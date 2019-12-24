@@ -82,6 +82,7 @@ export default class CommentIndexItem extends React.Component {
           context="comment" 
           commentId={comment._id}
           currentUser={currentUser}
+          setReplyForm={this.props.setReplyForm}
         />
       </li>
     )
