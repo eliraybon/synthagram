@@ -167,14 +167,21 @@ class FeedIndexItem extends React.Component {
           </div>
           <p className="feed-item-username">{photo.user.username}</p>
         </div>
-        <img
-          onClick={() => this.handleTap(photo._id)}
-          src={photo.photoUrl}
-        />
-        <div className="feed-item-bottom">
+        <div className="feed-item-image-container">
+          <img
+            onClick={() => this.handleTap(photo._id)}
+            src={photo.photoUrl}
+          />
           {this.state.justLiked && (
-            <p>heart</p>
+            <div className="just-liked-modal">
+              {/* heart */}
+              <i className="fas fa-music"></i>
+            </div>
           )}
+          
+        </div>
+        <div className="feed-item-bottom">
+          
          
           <div className="feed-item-buttons">
             <div className="feed-item-buttons-left">

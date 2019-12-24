@@ -35,6 +35,7 @@
   width: 500px;
   height: 500px;
   object-fit: cover;
+  position: relative;
 }
 
 .feed-item-username {
@@ -94,6 +95,41 @@
   color: rgb(205, 205, 205);
   font-size: 23px;
 }
+
+.feed-item-image-container {
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+.just-liked-modal {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.288);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.just-liked-modal > .fa-music {
+  font-size: 120px;
+  color: rgb(158, 116, 184);
+}
+
+
+
+
+
+
+
+
+
 
 @media only screen and (max-width: 500px) {
 
