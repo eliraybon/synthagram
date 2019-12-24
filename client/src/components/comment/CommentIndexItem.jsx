@@ -33,7 +33,7 @@ export default class CommentIndexItem extends React.Component {
       //you'll nedd to pass this a cancel edit function as well to set editing state to false
       return (
         <EditCommentForm 
-          commentId={comment._id} 
+          comment={comment} 
           finishEdit={this.finishEdit}
         />
       )
@@ -41,7 +41,7 @@ export default class CommentIndexItem extends React.Component {
 
     return (
       <li className="comment">
-        <p>{comment.body}</p>
+        <p>{comment.author.username} {comment.body}</p>
 
         {(comment.author._id === currentUser) && (
           <Mutation

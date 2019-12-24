@@ -7,7 +7,7 @@ export default class EditCommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      body: ''
+      body: this.props.comment.body
     };
   }
 
@@ -20,7 +20,7 @@ export default class EditCommentForm extends React.Component {
     debugger;
     updateComment({
       variables: {
-        id: this.props.commentId,
+        id: this.props.comment._id,
         body: this.state.body,
       }
     }).then(() => this.props.finishEdit())

@@ -19,15 +19,22 @@ export default class CommentForm extends React.Component {
 
   handleSubmit = (e, newComment) => {
     e.preventDefault();
-    this.setState({ body: '' });
-    newComment({
-      variables: {
-        body: this.state.body,
-        author: this.props.currentUser,
-        photo: this.props.photoId,
-        parentComment: this.props.parentComment || null
-      }
-    })
+    const body = this.state.body.trim();
+    if (body) {
+      this.setState({ body: '' });
+      newComment({
+        variables: {
+          body: this.state.body,
+          author: this.props.currentUser,
+          photo: this.props.photoId,
+          parentComment: this.props.parentComment || null
+        }
+      })
+    } else {
+      //add error messages here 
+      //this.setState({ message: "Comment cannot be empty"})
+      return;
+    }
   }
 
   render() {
