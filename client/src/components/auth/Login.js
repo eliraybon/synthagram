@@ -60,7 +60,9 @@ class Login extends Component {
                 onSubmit={e => this.handleSubmit(e, loginUser) }
               >
 
-                <h1>Synthagram</h1>
+                <h1 className="auth-form-header">
+                  Synthagram
+                </h1>
   
                 <input
                   value={this.state.username}
@@ -81,9 +83,13 @@ class Login extends Component {
                 <p className="auth-error-messages">{message}</p>
               </form>
 
-              <div>
-                <p>Don't have an account? 
-                  <Link to="/register">
+              <div className="auth-form-bottom">
+                <p className="auth-form-text">
+                  Don't have an account?     
+                  <Link 
+                    to="/register" 
+                    className="auth-form-link"
+                  >
                     Sign Up
                   </Link>
                 </p>
