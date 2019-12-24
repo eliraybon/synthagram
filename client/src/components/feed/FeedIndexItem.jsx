@@ -17,11 +17,11 @@ export default class FeedIndexItem extends React.Component {
         <img
           src={photo.photoUrl}
         />
+        <div className="feed-item-bottom">
+          <p className="feed-item-body">{photo.body}</p>
 
-        <p>{photo.body}</p>
-
-        <p>{photo.likes.length}</p>
-
+          <p className="feed-item-likes-count">{photo.likes.length} likes</p>
+        </div>
         {/* <CommentIndex comments={rootComments} /> */}
       </li>
     )

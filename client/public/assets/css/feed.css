@@ -42,6 +42,21 @@
   font-size: 18px;
 }
 
+.feed-item-bottom {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  padding-bottom: 20px;
+}
+
+.feed-item-body {
+  margin-bottom: 10px;
+}
+
+.feed-item-likes-count {
+  color: gray;
+}
+
 @media only screen and (max-width: 500px) {
 
   .feed {
