@@ -32,14 +32,16 @@ class Nav extends React.Component {
             onClick={() => this.props.history.push("/post")}
             className="nav-button"
           >
-            Post
+            {/* Post */}
+            <i className="far fa-plus-square"></i>
           </button>
 
           <button
             onClick={() => this.props.history.push("/explore")}
             className="nav-button"
           >
-            Explore
+            {/* Explore */}
+            <i className="far fa-compass"></i>
           </button>
 
           <ApolloConsumer>
@@ -55,7 +57,8 @@ class Nav extends React.Component {
                   className="nav-button"
                   onClick={() => this.props.history.push(`/users/${this.state.currentUser}`)} 
                 >
-                  Profile
+                  {/* Profile */}
+                  <i className="far fa-user"></i>
                 </button>
               )
             }}
@@ -71,7 +74,8 @@ class Nav extends React.Component {
                   this.props.history.push("/login");
                 }}
               >
-                Logout
+                {/* Logout */}
+                <i className="fas fa-sign-out-alt"></i>
               </button>
             )}
           </ApolloConsumer>

@@ -1,9 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Pattaya&display=swap');
+
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 10%;
+  height: 75px;
+  border-bottom: 1px solid rgb(225, 225, 225);
+  background-color: rgb(158, 116, 184);
+}
+
+.nav-logo h1 {
+  font-family: 'Pattaya', sans-serif;
+  font-size: 30px;
+  margin-left: 15px;
+  position: relative;
+  bottom: 2px;
+  color: white;
 }
 
 .nav-buttons {
   display: flex;
+  font-size: 23px;
+}
+
+.nav-button {
+  color: white;
+  margin-left: 20px;
+  /* margin: 10px; */
+}
+
+.search {
+  border: 1px solid rgb(225, 225, 225);
+  border-radius: 5px;
+  font-size: 14px;
+  width: 215px;
+  height: 25px;
+  text-align: center;
+  background-color: white;
+  margin-left: 20px;
+}
+
+.search-input {
+  width: 100%;
+  height: 100%;
+  padding: 0px 10px;
+}
+
+.search-results {
+  background-color: white;
+}
+
+@media only screen and (max-width: 400px) {
+  .nav {
+    padding: 0 20px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .nav-logo h1 {
+    font-family: 'Pattaya', sans-serif;
+    font-size: 27px;
+    margin-left: 0px;
+  }
+
+  .nav-buttons {
+    display: flex;
+    font-size: 22px;
+    margin-right: 0px;
+  }
+
+  .nav-button {
+    margin-left: 18px;
+  }
+
 }
