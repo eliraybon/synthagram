@@ -19,7 +19,7 @@ class Nav extends React.Component {
       <nav className="nav">
 
         <div className="nav-logo">
-          <Link to="/explore">
+          <Link to="/feed">
             <h1>Synthagram</h1>
           </Link>
         </div>

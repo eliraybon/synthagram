@@ -55,4 +55,39 @@ UserSchema.statics.removeFollow = (unfollowingId, userId) => {
     })
 }
 
+sortByDate = (photos) => {
+  if (photos.length < 2) return photos;
+
+  const pivot = photos[0];
+  let left = photos.slice(1).filter(photo => photo.created > pivot.created);
+  let right = photos.slice(1).filter(photo => photo.created <= pivot.created);
+  left = sortByDate(left);
+  right = sortByDate(right);
+
+  return left.concat([pivot]).concat(right);
+} 
+
+UserSchema.statics.feed = currentUserId => {
+  const User = mongoose.model('users');
+  //you need to find a way to sort the returned photos from newest to oldest
+  return User.findById(currentUserId)
+    .populate('photos')
+    .populate({path: 'followedUsers', populate: { path: 'photos' }})
+    .then(user => {
+      const feedPhotos = [];
+
+      user.followedUsers.forEach(followedUser => {
+        followedUser.photos.forEach(photo => {
+          feedPhotos.push(photo);
+        })
+      })
+
+      user.photos.forEach(photo => {
+        feedPhotos.push(photo);
+      })
+
+      return sortByDate(feedPhotos);
+    })
+}
+
 module.exports = mongoose.model("users", UserSchema);

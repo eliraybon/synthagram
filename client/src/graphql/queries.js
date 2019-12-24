@@ -20,3 +20,20 @@ export const SEARCH_USERS = gql`
     }
   }
 `;
+
+export const FEED = gql`
+  query Feed($currentUserId: ID!) {
+    feed(currentUserId: $currentUserId) {
+      _id
+      photoUrl
+      body
+      user {
+        _id
+        username
+      }
+      likes {
+        _id
+      }
+    }
+  }
+`;
