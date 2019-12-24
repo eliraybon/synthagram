@@ -151,12 +151,12 @@ class FeedIndexItem extends React.Component {
 
           <p className="feed-item-likes-count">{photo.likes.length} likes</p>
 
-          <p className="feed-item-body">
+          <div className="feed-item-body">
             <div className="feed-item-body-username">
               <Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link>
             </div>
             {photo.body}
-          </p>
+          </div>
         </div>
         {/* <CommentIndex comments={rootComments} /> */}
       </li>
