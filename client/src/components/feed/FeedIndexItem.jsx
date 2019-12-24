@@ -3,7 +3,7 @@ import CommentIndex from '../comment/CommentIndex';
 import { Mutation } from 'react-apollo';
 import { FEED } from '../../graphql/queries';
 import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
 class FeedIndexItem extends React.Component {
   handleLike = (e, addLike) => {
@@ -45,7 +45,7 @@ class FeedIndexItem extends React.Component {
         >
           {addLike => (
             <button onClick={(e => this.handleLike(e, addLike))}>
-              Like
+              <i className="fas fa-music"></i>
             </button>
           )}
         </Mutation>
@@ -57,7 +57,7 @@ class FeedIndexItem extends React.Component {
         >
           {removeLike => (
             <button onClick={(e => this.handleLike(e, removeLike))}>
-              Unlike
+              <i className="fas fa-music liked"></i>
             </button>
           )}
         </Mutation>
@@ -82,7 +82,7 @@ class FeedIndexItem extends React.Component {
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>
-              Delete
+              <i className="fas fa-trash-alt"></i>
             </button>
           )}
         </Mutation>
@@ -107,19 +107,28 @@ class FeedIndexItem extends React.Component {
           src={photo.photoUrl}
         />
         <div className="feed-item-bottom">
-          <p className="feed-item-body">{photo.body}</p>
+          
 
           <div className="feed-item-buttons">
-            {this.renderLikeButton()}
-            <button 
-              onClick={() => this.props.history.push(`/photos/${photo._id}`)}
-              >Comment
-            </button>
+            <div className="feed-item-buttons-left">
+              {this.renderLikeButton()}
+              <button 
+                onClick={() => this.props.history.push(`/photos/${photo._id}`)}
+              ><i className="fas fa-comment"></i>
+              </button>
+            </div>
             {this.renderDeleteButton()}
           </div>
 
 
           <p className="feed-item-likes-count">{photo.likes.length} likes</p>
+
+          <p className="feed-item-body">
+            <div className="feed-item-body-username">
+              <Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link>
+            </div>
+            {photo.body}
+          </p>
         </div>
         {/* <CommentIndex comments={rootComments} /> */}
       </li>

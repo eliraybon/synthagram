@@ -45,16 +45,54 @@
 .feed-item-bottom {
   display: flex;
   flex-direction: column;
-  padding: 10px 15px;
+  padding: 5px 15px;
   padding-bottom: 20px;
 }
 
 .feed-item-body {
-  margin-bottom: 10px;
+  margin-top: 10px;
+  display: flex;
+}
+
+.feed-item-body-username {
+  margin-right: 10px;
+  color: rgb(158, 116, 184);
+  font-weight: bold;
 }
 
 .feed-item-likes-count {
   color: gray;
+}
+
+.feed-item-buttons {
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  justify-content: space-between;
+}
+
+.feed-item-buttons-left {
+  display: flex;
+}
+
+.feed-item-buttons .fa-music {
+  color: rgb(201, 201, 201);
+  font-size: 23px;
+  margin-right: 20px;
+}
+
+.feed-item-buttons .fa-music.liked {
+  color: rgb(158, 116, 184);
+}
+
+.feed-item-buttons .fa-comment {
+  color: rgb(206, 206, 206);
+  font-size: 23px;
+}
+
+.feed-item-buttons .fa-trash-alt {
+  color: rgb(205, 205, 205);
+  font-size: 23px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -72,4 +110,5 @@
     max-width: 100%;
     height: 100vw;
   }
+
 }
