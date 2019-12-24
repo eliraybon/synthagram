@@ -81,6 +81,31 @@ const RootQueryType = new GraphQLObjectType({
         return User.find({ username: { $regex: args.filter, $options: "i" } });
       }
     },
+    //you will need to find a way to sort by date
+    feed: {
+      type: new GraphQLList(PhotoType),
+      args: {
+        currentUserId: {
+          type: GraphQLID
+        }
+      },
+      resolve(_, { currentUserId }) {
+        return User.feed(currentUserId);
+      }
+    },
+    //you can fine tune what the explore page actually returns later
+    explorePhotos: {
+      type: new GraphQLList(PhotoType),
+      resolve() {
+        return Photo.find({}).slice(0, 10);
+      }
+    },
+    exploreUsers: {
+      type: new GraphQLList(UserType),
+      resolve() {
+        return User.find({}).slice(0, 10);
+      }
+    }
   })
 });
 
