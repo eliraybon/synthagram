@@ -21,14 +21,17 @@ span, article, footer, time, small {
 html {
   background: rgb(250, 250, 250);
   height: 100%;
+  width: 100%;
 }
 
 body {
   height: 100%;
+  width: 100%;
 }
 
 main {
   height: 100%;
+  overflow-x: hidden;
 }
 
 #root {
