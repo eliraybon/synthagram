@@ -90,6 +90,7 @@ export default class PhotoForm extends React.Component {
 
   render() {
     return (
+      <div className="photo-form-main">
       <Query
         query={CURRENT_USER}
         onCompleted={data => this.setState({ user: data.currentUser })}
@@ -111,21 +112,17 @@ export default class PhotoForm extends React.Component {
                   encType="multipart/form-data"
                 >
 
-                  <h2>Photo Upload</h2>
+                  <h2>Upload a Photo</h2>
 
-                  <input
-                    className='form-input'
-                    type="text"
-                    value={this.state.body}
-                    onChange={this.update('body')}
-                    placeholder='Body'
-                  />
-
+                  
+                  <div>
                   <Dropzone onDrop={this.onDrop}>
                     {({ getRootProps, getInputProps }) => (
                       <div {...getRootProps()} className="dropzone">
                         <input {...getInputProps()} />
-                        Drag and Drop Here
+                        { !this.state.content && (
+                          <p>Drag and Drop Here</p>
+                        )}
 
                         {this.state.previewImg && (
                           <img
@@ -138,6 +135,15 @@ export default class PhotoForm extends React.Component {
                     )}
                   </Dropzone>
 
+                  <textarea
+                    className='form-input'
+                    // type="text"
+                    value={this.state.body}
+                    onChange={this.update('body')}
+                    placeholder='Caption this photo'
+                  />
+                  </div>
+
                   <button className='post-form-button'>
                     Post
                   </button>
@@ -149,6 +155,7 @@ export default class PhotoForm extends React.Component {
           )
         }}
       </Query>
+      </div>
     )
   }
 }

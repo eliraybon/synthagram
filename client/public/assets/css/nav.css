@@ -13,7 +13,7 @@
 .nav-logo h1 {
   font-family: 'Pattaya', sans-serif;
   font-size: 30px;
-  margin-left: 15px;
+  margin-right: 15px;
   position: relative;
   bottom: 2px;
   color: white;
@@ -22,12 +22,14 @@
 .nav-buttons {
   display: flex;
   font-size: 23px;
+  /* width: 100%; */
+  justify-content: flex-end;
 }
 
 .nav-button {
   color: white;
-  margin-left: 20px;
-  /* margin: 10px; */
+  /* margin-left: 20px; */
+  margin: 10px;
 }
 
 .search {
@@ -38,13 +40,14 @@
   height: 25px;
   text-align: center;
   background-color: white;
-  margin-left: 20px;
+  margin: 0px 30px;
 }
 
 .search-input {
   width: 100%;
   height: 100%;
   padding: 0px 10px;
+  /* margin: 0px 10px; */
 }
 
 .search-results {
@@ -76,4 +79,18 @@
     margin-left: 18px;
   }
 
+}
+
+@media only screen and (max-width: 620px) {
+  .search {
+    display: none;
+  }
+
+  .nav-buttons {
+    justify-content: flex-end;
+  }
+
+  .nav-button {
+    margin-left: 10px;
+  }
 }
