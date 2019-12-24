@@ -1,9 +1,11 @@
 import React from 'react';
 import CommentIndex from '../comment/CommentIndex';
 import { Mutation } from 'react-apollo';
-import { ADD_LIKE, REMOVE_LIKE } from '../../graphql/mutations';
+import { FEED } from '../../graphql/queries';
+import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
+import { withRouter } from 'react-router-dom';
 
-export default class FeedIndexItem extends React.Component {
+class FeedIndexItem extends React.Component {
   handleLike = (e, addLike) => {
     e.preventDefault();
     debugger;
@@ -25,6 +27,15 @@ export default class FeedIndexItem extends React.Component {
     })
   } 
 
+  handleDelete = (e, deletePhoto) => {
+    e.preventDefault();
+    deletePhoto({
+      variables: {
+        photoId: this.props.photo._id
+      }
+    })
+  }
+
   renderLikeButton = () => {
     const { photo, currentUser } = this.props;
 
@@ -44,11 +55,35 @@ export default class FeedIndexItem extends React.Component {
       return (
         <Mutation
           mutation={REMOVE_LIKE}
-          variables={{ photoId: photo._id, userId: currentUser }}
         >
           {removeLike => (
             <button onClick={(e => this.handleLike(e, removeLike))}>
               Unlike
+            </button>
+          )}
+        </Mutation>
+      )
+    }
+  }
+
+  renderDeleteButton = () => {
+    const { photo, currentUser } = this.props;
+    if (photo.user._id === currentUser) {
+      return (
+        <Mutation
+          mutation={DELETE_PHOTO}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: {
+                currentUserId: this.props.currentUser
+              }
+            }
+          ]}
+        >
+          {deletePhoto => (
+            <button onClick={(e => this.handleDelete(e, deletePhoto))}>
+              Delete
             </button>
           )}
         </Mutation>
@@ -75,7 +110,15 @@ export default class FeedIndexItem extends React.Component {
         <div className="feed-item-bottom">
           <p className="feed-item-body">{photo.body}</p>
 
-          {this.renderLikeButton()}
+          <div className="feed-item-buttons">
+            {this.renderLikeButton()}
+            <button 
+              onClick={() => this.props.history.push(`/photos/${photo._id}`)}
+              >Comment
+            </button>
+            {this.renderDeleteButton()}
+          </div>
+
 
           <p className="feed-item-likes-count">{photo.likes.length} likes</p>
         </div>
@@ -84,3 +127,5 @@ export default class FeedIndexItem extends React.Component {
     )
   }
 }
+
+export default withRouter(FeedIndexItem);

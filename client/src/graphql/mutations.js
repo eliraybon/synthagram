@@ -61,3 +61,11 @@ export const REMOVE_LIKE = gql`
     }
   }
 `;
+
+export const DELETE_PHOTO = gql`
+  mutation DeletePhoto($photoId: ID!) {
+    deletePhoto(photoId: $photoId) {
+      _id
+    }
+  }
+`;
