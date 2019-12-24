@@ -35,7 +35,7 @@ export default class PhotoForm extends React.Component {
               user: this.state.user
             }
           }).then(() => {
-              this.props.history.push('/explore');
+              this.props.history.push('/feed');
             });
         })
     } else {

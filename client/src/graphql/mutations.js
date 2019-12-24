@@ -43,3 +43,21 @@ export const NEW_PHOTO = gql`
     }
   }
 `;
+
+export const ADD_LIKE = gql`
+  mutation AddLike($photoId: ID!, $userId: ID!) {
+    addLike(photoId: $photoId, userId: $userId) {
+      _id
+      likes
+    }
+  }
+`;
+
+export const REMOVE_LIKE = gql`
+  mutation RemoveLike($photoId: ID!, $userId: ID!) {
+    removeLike(photoId: $photoId, userId: $userId) {
+      _id
+      likes
+    }
+  }
+`;

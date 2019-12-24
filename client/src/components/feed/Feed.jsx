@@ -32,7 +32,7 @@ export default class Feed extends React.Component {
 
                 return (
                   <div className="feed-container">
-                    <FeedIndex photos={feed} />
+                    <FeedIndex photos={feed} currentUser={currentUser}/>
                   </div>
                 )
               }}

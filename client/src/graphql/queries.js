@@ -31,9 +31,7 @@ export const FEED = gql`
         _id
         username
       }
-      likes {
-        _id
-      }
+      likes
     }
   }
 `;

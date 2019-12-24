@@ -29,11 +29,18 @@ const PhotoType = new GraphQLObjectType({
           .then(photo => photo.user)
       }
     },
+    // likes: {
+    //   type: new GraphQLList(require('./user_type')),
+    //   resolve(parentValue) {
+    //     return Photo.findById(parentValue._id)
+    //       .populate('likes')
+    //       .then(photo => photo.likes)
+    //   }
+    // },
     likes: {
-      type: new GraphQLList(require('./user_type')),
+      type: new GraphQLList(GraphQLID),
       resolve(parentValue) {
         return Photo.findById(parentValue._id)
-          .populate('likes')
           .then(photo => photo.likes)
       }
     },
