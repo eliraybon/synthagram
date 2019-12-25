@@ -64,6 +64,9 @@ export const EXPLORE_USERS = gql`
       _id
       username
       profileImg
+      followers {
+        _id
+      }
     }
   }
 `;
