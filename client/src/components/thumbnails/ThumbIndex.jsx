@@ -5,6 +5,7 @@ export default class ThumbIndex extends React.Component {
   render() {
     const { thumbs } = this.props;
     return (
+      <div className="thumb-index-container">
       <ul className="thumb-index">
         {thumbs.map(thumb => {
           return (
@@ -14,7 +15,10 @@ export default class ThumbIndex extends React.Component {
             />
           )
         })}
+        <li className="thumb-index-item-hidden"></li>
+        <li className="thumb-index-item-hidden"></li>
       </ul>
+      </div>
     )
   }
 }

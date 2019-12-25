@@ -78,8 +78,11 @@ export default class UserIndexItem extends React.Component {
     const { user } = this.props;
 
     return (
-      <li>
-        <p>{user.username}</p>
+      <li key={`user-index-item-${user._id}`} className="user-index-item">
+        <div className="user-index-pfp-container">
+          {/* <img /> */}
+        </div>
+        <p className="user-index-item-username">{user.username}</p>
         {this.renderFollowButton()}
       </li>
     )
