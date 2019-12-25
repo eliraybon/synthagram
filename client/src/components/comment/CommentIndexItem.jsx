@@ -79,7 +79,7 @@ export default class CommentIndexItem extends React.Component {
         </div>
 
         <CommentIndex 
-          comments={comment.replies} 
+          comments={this.props.comments} 
           context="comment" 
           commentId={comment._id}
           currentUser={currentUser}
