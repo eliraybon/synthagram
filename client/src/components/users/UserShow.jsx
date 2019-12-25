@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query, Mutation } from 'react-apollo';
-import { CURRENT_USER, FETCH_USER } from '../../graphql/queries';
+import { CURRENT_USER, FETCH_USER, FEED } from '../../graphql/queries';
 import { ADD_FOLLOW, REMOVE_FOLLOW } from '../../graphql/mutations';
 import ThumbIndex from '../thumbnails/ThumbIndex';
 
@@ -47,6 +47,12 @@ export default class UserShow extends React.Component {
     return (
       <Mutation
         mutation={ADD_FOLLOW}
+        refetchQueries={[
+          {
+            query: FEED,
+            variables: { currentUserId: this.state.currentUser }
+          }
+        ]}
       >
         {addFollow => (
           <button
@@ -63,14 +69,12 @@ export default class UserShow extends React.Component {
     return (
       <Mutation
         mutation={REMOVE_FOLLOW}
-      // refetchQueries={[
-      //   {
-      //     query: FETCH_USER,
-      //     variables: {
-      //       _id: this.props.match.params.userId
-      //     }
-      //   }
-      // ]}
+        refetchQueries={[
+          {
+            query: FEED,
+            variables: { currentUserId: this.state.currentUser }
+          }
+        ]}
       >
         {removeFollow => (
           <button
@@ -82,40 +86,6 @@ export default class UserShow extends React.Component {
       </Mutation>
     )
   }
-
-  // renderFollowButton = () => {
-  //   const { user, currentUser } = this.state;
-  //   if (user._id === currentUser) return null;
-  //   if (!this.followed(user.followers, currentUser)) {
-  //     return (
-  //       <Mutation 
-  //         mutation={ADD_FOLLOW}
-  //       >
-  //         {addFollow => (
-  //           <button
-  //             onClick={(e => this.handleFollow(e, addFollow))}
-  //           >
-  //             Follow
-  //           </button>
-  //         )}
-  //       </Mutation>
-  //     )
-  //   } else {
-  //     return (
-  //       <Mutation 
-  //         mutation={REMOVE_FOLLOW}
-  //       >
-  //         {removeFollow => (
-  //           <button
-  //             onClick={(e => this.handleUnfollow(e, removeFollow))}
-  //           >
-  //             Unfollow
-  //           </button>
-  //         )}
-  //       </Mutation>
-  //     )
-  //   }
-  // }
 
   render() {
     return (
