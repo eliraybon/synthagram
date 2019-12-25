@@ -1,15 +1,121 @@
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import { CURRENT_USER, FETCH_USER } from '../../graphql/queries';
+import { ADD_FOLLOW, REMOVE_FOLLOW } from '../../graphql/mutations';
 import ThumbIndex from '../thumbnails/ThumbIndex';
 
 export default class UserShow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
       currentUser: null
     };
   }
+
+  handleFollow = (e, addFollow) => {
+    e.preventDefault();
+    addFollow({
+      variables: {
+        followingId: this.props.match.params.userId,
+        userId: this.state.currentUser
+      }
+    })
+  }
+
+  handleUnfollow = (e, removeFollow) => {
+    e.preventDefault();
+    removeFollow({
+      variables: {
+        unfollowingId: this.props.match.params.userId,
+        userId: this.state.currentUser
+      }
+    })
+  }
+
+  followed = (followers, currentUser) => {
+    let followed = false;
+    followers.forEach(follower => {
+      if (follower._id === currentUser) {
+        followed = true;
+      }
+    })
+    return followed;
+  }
+
+  renderFollowButton = () => {
+    return (
+      <Mutation
+        mutation={ADD_FOLLOW}
+      >
+        {addFollow => (
+          <button
+            onClick={(e => this.handleFollow(e, addFollow))}
+          >
+            Follow
+            </button>
+        )}
+      </Mutation>
+    )
+  }
+
+  renderUnfollowButton = () => {
+    return (
+      <Mutation
+        mutation={REMOVE_FOLLOW}
+      // refetchQueries={[
+      //   {
+      //     query: FETCH_USER,
+      //     variables: {
+      //       _id: this.props.match.params.userId
+      //     }
+      //   }
+      // ]}
+      >
+        {removeFollow => (
+          <button
+            onClick={(e => this.handleUnfollow(e, removeFollow))}
+          >
+            Unfollow
+            </button>
+        )}
+      </Mutation>
+    )
+  }
+
+  // renderFollowButton = () => {
+  //   const { user, currentUser } = this.state;
+  //   if (user._id === currentUser) return null;
+  //   if (!this.followed(user.followers, currentUser)) {
+  //     return (
+  //       <Mutation 
+  //         mutation={ADD_FOLLOW}
+  //       >
+  //         {addFollow => (
+  //           <button
+  //             onClick={(e => this.handleFollow(e, addFollow))}
+  //           >
+  //             Follow
+  //           </button>
+  //         )}
+  //       </Mutation>
+  //     )
+  //   } else {
+  //     return (
+  //       <Mutation 
+  //         mutation={REMOVE_FOLLOW}
+  //       >
+  //         {removeFollow => (
+  //           <button
+  //             onClick={(e => this.handleUnfollow(e, removeFollow))}
+  //           >
+  //             Unfollow
+  //           </button>
+  //         )}
+  //       </Mutation>
+  //     )
+  //   }
+  // }
 
   render() {
     return (
@@ -22,10 +128,13 @@ export default class UserShow extends React.Component {
           if (loading) return null;
           if (error) return <p>Error</p>
 
+          const { currentUser } = data;
+
           return (
             <Query
               query={FETCH_USER}
               variables={{ _id: this.props.match.params.userId }}
+              onCompleted={data => this.setState({ user: data.user })}
             >
               {({ loading, error, data }) => {
 
@@ -43,6 +152,10 @@ export default class UserShow extends React.Component {
                     />
 
                     <p>{user.username}</p>
+
+                    {(!this.followed(user.followers, currentUser)) ? 
+                      this.renderFollowButton() : this.renderUnfollowButton()
+                    }
 
                     <p>Posts: {user.photos.length}</p>
                     <p>Followers: {user.followers.length}</p>
