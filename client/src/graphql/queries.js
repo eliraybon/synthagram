@@ -83,3 +83,29 @@ export const EXPLORE_PHOTOS = gql`
     }
   }
 `;
+
+export const FETCH_USER = gql`
+  query FetchUser($_id: ID!) {
+    user(_id: $_id) {
+      _id
+      username
+      profileImg
+      followers {
+        _id
+        username
+      }
+      followedUsers {
+        _id
+        username
+      }
+      photos {
+        _id
+        photoUrl
+        likes
+        comments {
+          _id
+        }
+      }
+    }
+  }
+`;
