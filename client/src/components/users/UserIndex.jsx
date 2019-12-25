@@ -14,6 +14,7 @@ export default class UserIndex extends React.Component {
           return (
             <UserIndexItem
               user={user}
+              currentUser={currentUser}
               key={user._id}
             />
           )

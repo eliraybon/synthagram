@@ -103,3 +103,25 @@ export const DELETE_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_FOLLOW = gql`
+  mutation AddFollow($followingId: ID!, $userId: ID!) {
+    addFollow(followingId: $followingId, userId: $userId) {
+      _id
+      followers {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_FOLLOW = gql`
+  mutation RemoveFollow($followingId: ID!, $userId: ID!) {
+    removeFollow(unfollowingId: $unfollowingId, userId: $userId) {
+      _id
+      followers {
+        _id
+      }
+    }
+  }
+`;
