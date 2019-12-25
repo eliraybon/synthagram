@@ -1,0 +1,70 @@
+textarea {
+  resize: none;
+}
+
+.comment-form {
+  display: flex;
+  justify-content: center;
+  padding: 15px 10px;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 10px 5px;
+}
+
+.comment-form > .form-input {
+  border: 1px solid lightgray;
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  margin-right: 10px;
+  height: 35px;
+  font-size: 14px;
+}
+
+.comment-form-button {
+  color: rgb(158, 116, 184);
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.comment-form-button:hover {
+  text-decoration: underline;
+}
+
+.comment-index {
+  /* padding: 0px 20px; */
+  font-size: 15px;
+}
+
+.comment-index > .comment {
+  display: flex;
+  flex-direction: column;
+  /* margin: 20px 0px; */
+  margin-top: 20px;
+  margin-left: 15px;
+  border-left: 1px solid rgba(164, 133, 184, 0.297);
+  padding-left: 10px;
+}
+
+.comment > .comment-buttons {
+  display: flex;
+  color: rgb(158, 116, 184);
+  font-size: 13px;
+  margin-top: 5px;
+  
+}
+
+.comment-buttons > * {
+  margin-right: 10px;
+  
+}
+
+.comment > .comment-index {
+  /* margin-top: 5px; */
+}
+
+.comment-author {
+  font-weight: 600;
+  color: rgb(61, 58, 63);
+  margin-right: 3px;
+}
