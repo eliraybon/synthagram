@@ -25,6 +25,10 @@
   height: 100%;
 }
 
+.thumb-index-item-hidden {
+  display: hidden;
+}
+
 
 @media only screen and (max-width: 620px) { 
   .thumb-index {
@@ -72,6 +76,7 @@
   }
 
   .thumb-index-item-hidden {
+    display: block;
     width: 343px;
     height: 0px;
     padding: 12px;
