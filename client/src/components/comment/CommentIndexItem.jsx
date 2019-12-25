@@ -28,7 +28,7 @@ export default class CommentIndexItem extends React.Component {
 
   render() {
     const { comment, currentUser } = this.props;
-
+    
     if (this.state.editing) {
       //you'll nedd to pass this a cancel edit function as well to set editing state to false
       return (
@@ -41,41 +41,42 @@ export default class CommentIndexItem extends React.Component {
 
     return (
       <li className="comment">
-        <p>{comment.author.username} {comment.body}</p>
-
-        <button onClick={() => this.props.setReplyForm(comment)}>
-          Reply
-        </button>
-
-        {(comment.author._id === currentUser) && (
-          <Mutation
-            mutation={DELETE_COMMENT}
-            refetchQueries={[
-              {
-                query: FEED,
-                variables: {
-                  currentUserId: currentUser
-                }
-              }
-            ]}
-          >
-            {(deleteComment => {
-              return (
-                <button
-                  onClick={e => this.handleDelete(e, deleteComment)}
-                >
-                  Delete
-              </button>
-              )
-            })}
-          </Mutation>
-        )}
-
-        {(comment.author._id === currentUser) && (
-          <button onClick={() => this.setState({ editing: true })}>
-            Edit
+        <p><span className="comment-author">{comment.author.username}</span> {comment.body}</p>
+        <div className="comment-buttons">
+          <button onClick={() => this.props.setReplyForm(comment)}>
+            Reply
           </button>
-        )}
+
+          {(comment.author._id === currentUser) && (
+            <Mutation
+              mutation={DELETE_COMMENT}
+              refetchQueries={[
+                {
+                  query: FEED,
+                  variables: {
+                    currentUserId: currentUser
+                  }
+                }
+              ]}
+            >
+              {(deleteComment => {
+                return (
+                  <button
+                    onClick={e => this.handleDelete(e, deleteComment)}
+                  >
+                    Delete
+                </button>
+                )
+              })}
+            </Mutation>
+          )}
+
+          {(comment.author._id === currentUser) && (
+            <button onClick={() => this.setState({ editing: true })}>
+              Edit
+            </button>
+          )}
+        </div>
 
         <CommentIndex 
           comments={comment.replies} 
