@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from "jquery";
 import CommentIndex from '../comment/CommentIndex';
 import CommentForm from '../comment/CommentForm';
 import { Mutation } from 'react-apollo';
@@ -20,8 +21,13 @@ class FeedIndexItem extends React.Component {
       const likeButton = document.getElementById(`toggle-like-${photoId}`);
       likeButton.click();
       if (!likeButton.children[0].classList[2]) {
+        $(`#just-liked-modal-${photoId}`).animate({ opacity: 1 }, 200);
         this.setState({ justLiked: true });
-        setTimeout(() => this.setState({ justLiked: false }) ,1000);
+
+        setTimeout(() => {
+          this.setState({ justLiked: false });
+          $(`#just-liked-modal-${photoId}`).animate({ opacity: 0 }, 600);
+        } ,1000);
       }
     } else {
       this.setState({ tapped: true });
@@ -169,16 +175,14 @@ class FeedIndexItem extends React.Component {
         </div>
         <div className="feed-item-image-container">
           <img
-            onClick={() => this.handleTap(photo._id)}
+            
             src={photo.photoUrl}
           />
-          {this.state.justLiked && (
-            <div className="just-liked-modal">
-              {/* heart */}
+          <div id={`just-liked-modal-${photo._id}`} className="just-liked-modal" onClick={() => this.handleTap(photo._id)}>
+            {/* {this.state.justLiked && ( */}
               <i className="fas fa-music"></i>
-            </div>
-          )}
-          
+            {/* )} */}
+          </div>
         </div>
         <div className="feed-item-bottom">
           

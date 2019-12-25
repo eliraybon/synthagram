@@ -108,12 +108,12 @@
   top: 0;
   left: 0;
   z-index: 5;
-  background-color: rgba(255, 255, 255, 0.288);
+  /* background-color: rgba(255, 255, 255, 0.288); */
+  background-color: rgba(255, 255, 255, 0.262);
   display: flex;
   justify-content: center;
   align-items: center;
-  opacity: 1;
-  transition: all 0.5s ease-in-out;
+  opacity: 0;
 }
 
 
