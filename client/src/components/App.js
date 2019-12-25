@@ -7,6 +7,8 @@ import Login from './auth/Login';
 import Nav from './ui/Nav';
 import PhotoForm from './photos/PhotoForm';
 import Feed from './feed/Feed';
+import Explore from './explore/explore';
+import UserShow from './users/UserShow';
 
 
 
@@ -19,6 +21,8 @@ const App = () => {
         <AuthRoute exact path="/register" component={Register} routeType="auth" />
         <AuthRoute exact path="/post" component={PhotoForm} routeType="protected" />
         <AuthRoute exact path="/feed" component={Feed} routeType="protected" />
+        <AuthRoute exact path="/explore" component={Explore} routeType="protected" />
+        <AuthRoute exact path="/users/:userId" component={UserShow} routeType="protected" />
       </Switch>
     </main>
   );

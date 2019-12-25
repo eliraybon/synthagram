@@ -57,3 +57,29 @@ export const FEED = gql`
     }
   }
 `;
+
+export const EXPLORE_USERS = gql`
+  query ExploreUsers {
+    exploreUsers {
+      _id
+      username
+      profileImg
+      followers {
+        _id
+      }
+    }
+  }
+`;
+
+export const EXPLORE_PHOTOS = gql`
+  query ExplorePhotos {
+    explorePhotos {
+      _id
+      photoUrl
+      likes
+      comments {
+        _id
+      }
+    }
+  }
+`;
