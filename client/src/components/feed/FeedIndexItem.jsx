@@ -160,14 +160,18 @@ class FeedIndexItem extends React.Component {
     return (
       <li className="feed-index-item">
         <div className="feed-item-top">
-          <div className="feed-item-profile-photo">
-            {/* <img /> */}
-          </div>
-          <p className="feed-item-username">{photo.user.username}</p>
+          <Link to={`/users/${photo.user._id}`}>
+             <div className="feed-item-profile-photo">
+               {/* <img /> */}
+             </div>
+          </Link>
+
+          <Link to={`/users/${photo.user._id}`}>
+            <p className="feed-item-username">{photo.user.username}</p>
+          </Link>
         </div>
         <div className="feed-item-image-container">
           <img
-            
             src={photo.photoUrl}
           />
           <div 
