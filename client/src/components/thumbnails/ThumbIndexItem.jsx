@@ -5,11 +5,12 @@ export default class ThumbIndexItem extends React.Component {
     const { thumb } = this.props;
     return (
       <li className="thumb-index-item">
-        <img
-          src={thumb.photoUrl}
-          // width="40px"
-          // height="40px"
-        />
+        <img src={thumb.photoUrl} />
+
+        <div>
+          <p>{thumb.likes.length} Likes</p>
+          <p>{thumb.comments.length} Comments</p>
+        </div>
       </li>
     )
   }
