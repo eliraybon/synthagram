@@ -119,6 +119,15 @@ export const FETCH_PHOTO = gql`
       user {
         _id
         username
+        followers {
+          _id
+        }
+        followedUsers {
+          _id
+        }
+        photos {
+          _id
+        }
       }
       likes
       comments {
