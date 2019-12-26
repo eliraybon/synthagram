@@ -1,0 +1,50 @@
+.photo-show {
+  display: flex;
+  justify-content: center;
+}
+
+.photo-show-user-preview {
+  padding: 20px;
+  background-color: white;
+  height: max-content;
+  width: 270px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid lightgray; */
+  margin-left: 40px;
+  margin-top: 20px;
+}
+
+.user-preview-photo-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: lavender;
+  margin: 15px;
+}
+
+.photo-show-user-preview > button {
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.photo-show-user-preview > p {
+  margin: 5px;
+}
+
+.user-preview-username {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 815px) { 
+
+  .photo-show-user-preview {
+    display: none;
+  }
+}
