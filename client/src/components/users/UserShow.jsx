@@ -57,6 +57,7 @@ export default class UserShow extends React.Component {
         {addFollow => (
           <button
             onClick={(e => this.handleFollow(e, addFollow))}
+            className="follow-button"
           >
             Follow
             </button>
@@ -78,6 +79,7 @@ export default class UserShow extends React.Component {
       >
         {removeFollow => (
           <button
+            className="follow-button"
             onClick={(e => this.handleUnfollow(e, removeFollow))}
           >
             Unfollow
@@ -115,21 +117,29 @@ export default class UserShow extends React.Component {
 
                 return (
                   <div className="user-show">
-                    <img                        //overly long link to mediocre image vvv
-                      src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
-                      width="100px"
-                      height="100px"
-                    />
+                    <div className="user-show-top">
+                      <div className="user-show-top-main">
+                        <div className="user-show-pfp-container">
+                          <img                        //overly long link to mediocre image vvv
+                            src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
+                            width="100px"
+                            height="100px"
+                          />
+                        </div>
+                        <div className="user-show-top-info">
+                          <p className="user-show-username">{user.username}</p>
 
-                    <p>{user.username}</p>
-
-                    {(!this.followed(user.followers, currentUser)) ? 
-                      this.renderFollowButton() : this.renderUnfollowButton()
-                    }
-
-                    <p>Posts: {user.photos.length}</p>
-                    <p>Followers: {user.followers.length}</p>
-                    <p>Followed: {user.followedUsers.length}</p>
+                          {(!this.followed(user.followers, currentUser)) ? 
+                            this.renderFollowButton() : this.renderUnfollowButton()
+                          }
+                        </div>
+                      </div>
+                      <div className="user-show-stats">
+                        <p>Posts: {user.photos.length}</p>
+                        <p>Followers: {user.followers.length}</p>
+                        <p>Followed: {user.followedUsers.length}</p>
+                      </div>
+                    </div>
 
                     <ThumbIndex thumbs={user.photos} />
                   </div>
