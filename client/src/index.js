@@ -65,7 +65,7 @@ async function populateCache() {
       }) => {
         cache.writeData({
           data: {
-            // isLoggedIn: data.verifyUser.loggedIn,
+            isLoggedIn: data.verifyUser.loggedIn,
             currentUser: data.verifyUser._id
           }
         });

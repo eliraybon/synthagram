@@ -70,15 +70,18 @@ export default class UserIndexItem extends React.Component {
     const { user } = this.props;
 
     return (
-      <li>
-        <img
-          src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
-          width="100px"
-          height="100px"
-        />
+      <li key={`user-index-item-${user._id}`} className="user-index-item">
+        <div className="user-index-pfp-container">
+          <img
+            src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
+            width="100px"
+            height="100px"
+          />
+        </div>
         <Link to={`/users/${user._id}`}>
-          <p>{user.username}</p>
+          <p className="user-index-item-username">{user.username}</p>
         </Link>
+
         {this.renderFollowButton()}
       </li>
     )
