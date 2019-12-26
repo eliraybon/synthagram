@@ -301,14 +301,18 @@ export default class PhotoShow extends React.Component {
                       )}
                     </div>
 
-                    <div>
-                      <img 
-                        src={photo.user.profileImg} 
-                        width="50px"
-                        height="50px"
-                      />
+                    <div className="photo-show-user-preview">
+                      <Link to={`/users/${photo.user._id}`}>
+                        <div className="user-preview-photo-container">
+                        {/* <img 
+                          src={photo.user.profileImg} 
+                          width="50px"
+                          height="50px"
+                        /> */}
+                        </div>
+                      </Link>
 
-                      <p>{photo.user.username}</p>
+                      <p className="user-preview-username"><Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link></p>
 
                       {(!this.followed(photo.user.followers, currentUser)) ?
                         this.renderFollowButton() : this.renderUnfollowButton()
