@@ -142,14 +142,6 @@ class FeedIndexItem extends React.Component {
         <Mutation
           mutation={DELETE_PHOTO}
           update={(cache, data) => this.updateCache(cache, currentUser, { data })}
-          // refetchQueries={[
-          //   {
-          //     query: FEED,
-          //     variables: {
-          //       currentUserId: this.props.currentUser
-          //     }
-          //   }
-          // ]}
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>
@@ -178,10 +170,12 @@ class FeedIndexItem extends React.Component {
             
             src={photo.photoUrl}
           />
-          <div id={`just-liked-modal-${photo._id}`} className="just-liked-modal" onClick={() => this.handleTap(photo._id)}>
-            {/* {this.state.justLiked && ( */}
+          <div 
+            id={`just-liked-modal-${photo._id}`} 
+            className="just-liked-modal" 
+            onClick={() => this.handleTap(photo._id)}
+          >
               <i className="fas fa-music"></i>
-            {/* )} */}
           </div>
         </div>
         <div className="feed-item-bottom">

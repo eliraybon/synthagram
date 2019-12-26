@@ -9,6 +9,7 @@ import PhotoForm from './photos/PhotoForm';
 import Feed from './feed/Feed';
 import Explore from './explore/explore';
 import UserShow from './users/UserShow';
+import PhotoShow from './photos/PhotoShow';
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
         <AuthRoute exact path="/feed" component={Feed} routeType="protected" />
         <AuthRoute exact path="/explore" component={Explore} routeType="protected" />
         <AuthRoute exact path="/users/:userId" component={UserShow} routeType="protected" />
+        <AuthRoute exact path="/photos/:photoId" component={PhotoShow} routeType="protected" />
       </Switch>
     </main>
   );
