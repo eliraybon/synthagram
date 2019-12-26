@@ -11,11 +11,11 @@ export default class CommentIndex extends React.Component {
       return (
         <ul className="comment-index">
           {comments.map(comment => {
-            //you'll need to see what parentComment actually is 
             if (!comment.parentComment) {
               return (
                 <CommentIndexItem 
                   comment={comment} 
+                  comments={comments}
                   currentUser={currentUser}
                   setReplyForm={this.props.setReplyForm}
                   key={comment._id} 
@@ -31,10 +31,12 @@ export default class CommentIndex extends React.Component {
       return (
         <ul className="comment-index">
           {comments.map(comment => {
+            if (!comment.parentComment) return null;
             if (comment.parentComment._id === this.props.commentId) {
               return (
                 <CommentIndexItem
                   comment={comment}
+                  comments={comments}
                   currentUser={currentUser}
                   setReplyForm={this.props.setReplyForm}
                   key={comment._id}
