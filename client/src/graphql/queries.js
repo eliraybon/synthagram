@@ -109,3 +109,40 @@ export const FETCH_USER = gql`
     }
   }
 `;
+
+export const FETCH_PHOTO = gql`
+  query FetchPhoto($_id: ID!) {
+    photo(_id: $_id) {
+      _id
+      photoUrl
+      body
+      user {
+        _id
+        username
+      }
+      likes
+      comments {
+        _id
+        body
+        author {
+          _id
+          username
+        }
+        parentComment {
+          _id
+        }
+        replies {
+          _id
+          body
+          author {
+            _id
+            username
+          }
+          parentComment {
+            _id
+          }
+        }
+      }
+    }
+  }
+`;
