@@ -17,6 +17,7 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+  position: relative;
 }
 
 .thumb-index-item img {
@@ -29,6 +30,31 @@
   display: hidden;
 }
 
+.thumb-index-item-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.495);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.thumb-index-item-modal:hover {
+  opacity: 1;
+}
+
+.thumb-index-item-modal p {
+  color: rgb(149, 73, 196);
+  font-size: 20px;
+  margin: 8px;
+  font-weight: bold;
+}
 
 @media only screen and (max-width: 620px) { 
   .thumb-index {
