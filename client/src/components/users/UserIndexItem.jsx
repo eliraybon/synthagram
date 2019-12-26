@@ -44,6 +44,7 @@ export default class UserIndexItem extends React.Component {
         <Mutation mutation={ADD_FOLLOW}>
           {addFollow => (
             <button
+              className="follow-button"
               onClick={(e => this.handleFollow(e, addFollow))}
             >
               Follow
@@ -56,6 +57,7 @@ export default class UserIndexItem extends React.Component {
         <Mutation mutation={REMOVE_FOLLOW}>
           {removeFollow => (
             <button
+              className="follow-button"
               onClick={(e => this.handleUnfollow(e, removeFollow))}
             >
               Unfollow
