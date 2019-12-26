@@ -103,7 +103,7 @@ const RootQueryType = new GraphQLObjectType({
     exploreUsers: {
       type: new GraphQLList(UserType),
       resolve() {
-        return User.find({});
+        return User.find({}).limit(6);
       }
     }
   })
