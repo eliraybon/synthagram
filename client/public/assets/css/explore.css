@@ -69,9 +69,10 @@
   .user-index-item {
     min-width: 120px;
     width: 120px;
-    height: 180px;
-    padding: 10px;
+    height: 190px;
+    padding: 20px 0px;
     padding-bottom: 20px;
+  
   }
 
   .user-index-pfp-container {
