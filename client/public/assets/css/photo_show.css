@@ -1,11 +1,12 @@
 .photo-show {
   display: flex;
   justify-content: center;
+  margin-top: 95px;
 }
 
 .photo-show-user-preview {
   padding: 20px;
-  background-color: white;
+  background-color: rgb(41, 41, 41);
   height: max-content;
   width: 270px;
   height: 400px;
@@ -16,6 +17,7 @@
   /* border: 1px solid lightgray; */
   margin-left: 40px;
   margin-top: 20px;
+  color: rgb(169, 169, 169);
 }
 
 .user-preview-photo-container {
@@ -23,7 +25,7 @@
   height: 100px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: lavender;
+  background-color: white;
   margin: 15px;
 }
 
@@ -40,6 +42,7 @@
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
+  color: white;
 }
 
 @media only screen and (max-width: 815px) { 

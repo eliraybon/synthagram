@@ -3,9 +3,11 @@
   width: 300px;
   height: 200px;
   margin: 10px auto;
-  margin-top: 30px;
   flex-direction: column;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgb(164, 164, 164);
+  margin-top: 120px;
+  color: rgb(184, 184, 184);
+  margin-bottom: 40px;
 }
 
 .user-show-top-main {
@@ -24,23 +26,29 @@
   /* border: 1px solid lightgray; */
 }
 
+.user-show-top-main button {
+  background-color: rgb(58, 58, 58);
+}
+
 .user-show-pfp-container {
   border-radius: 50%;
   overflow: hidden;
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
 }
 
 .user-show-pfp-container > img {
-  width: 120px;
-  height: 120px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
 }
 
 .user-show-username {
-  font-size: 23px;
+  font-size: 25px;
   font-weight: bold;
   margin-bottom: 12px;
+  margin-top: 10px;
+  color: white;
 }
 
 .user-show-stats {
