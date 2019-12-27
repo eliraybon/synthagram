@@ -37,7 +37,7 @@
   width: 100%;
   height: 100%;
   z-index: 5;
-  background-color: rgba(255, 255, 255, 0.495);
+  background-color: rgba(0, 0, 0, 0.425);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,9 +50,9 @@
 }
 
 .thumb-index-item-modal p {
-  color: rgb(149, 73, 196);
+  color: white;
   font-size: 20px;
-  margin: 8px;
+  margin: 10px;
   font-weight: bold;
 }
 
@@ -65,7 +65,7 @@
     width: 100%;
   }
   .thumb-index-item {
-    border: 1px solid white;
+    border: 1px solid black;
   }
 }
 

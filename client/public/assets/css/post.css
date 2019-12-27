@@ -12,7 +12,7 @@ textarea {
 }
 
 .comment-form > .form-input {
-  border: 1px solid lightgray;
+  border: 1px solid rgb(157, 157, 157);
   width: 100%;
   padding: 8px;
   border-radius: 5px;
@@ -22,7 +22,7 @@ textarea {
 }
 
 .comment-form-button {
-  color: rgb(158, 116, 184);
+  color: rgb(193, 193, 193);
   font-weight: bold;
   font-size: 14px;
 }
@@ -39,6 +39,7 @@ textarea {
 .comment-index > .comment {
   display: flex;
   flex-direction: column;
+  color: rgb(233, 233, 233);
   /* margin: 20px 0px; */
   margin-top: 20px;
   margin-left: 15px;
@@ -48,7 +49,7 @@ textarea {
 
 .comment > .comment-buttons {
   display: flex;
-  color: rgb(158, 116, 184);
+  color: rgb(179, 179, 179);
   font-size: 13px;
   margin-top: 5px;
   
@@ -65,6 +66,6 @@ textarea {
 
 .comment-author {
   font-weight: 600;
-  color: rgb(61, 58, 63);
+  color: rgb(255, 255, 255);
   margin-right: 3px;
 }
