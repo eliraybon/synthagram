@@ -10,7 +10,8 @@
   width: 100%;
   height: 100%;
   /* background-image: url("https://images.unsplash.com/photo-1508075437000-bb5dc1ca55ea?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2023&q=80"); */
-  background-image: url("https://images.unsplash.com/photo-1561447920-aa5c68129cff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2344&q=80");
+  /* background-image: url("https://images.unsplash.com/photo-1561447920-aa5c68129cff?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2344&q=80"); */
+  background-image: url("https://images.unsplash.com/photo-1552358122-7910c1887d25?ixlib=rb-1.2.1&auto=format&fit=crop&w=1700&q=80");
   background-size: cover;
   background-repeat: no-repeat;
 }
