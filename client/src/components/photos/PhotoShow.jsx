@@ -2,7 +2,13 @@ import React from 'react';
 import $ from "jquery";
 import { Query, Mutation } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { CURRENT_USER, FETCH_PHOTO, FEED } from '../../graphql/queries';
+import { 
+  CURRENT_USER, 
+  FETCH_PHOTO, 
+  FEED, 
+  FETCH_USER 
+} from '../../graphql/queries';
+
 import { 
   ADD_LIKE, 
   REMOVE_LIKE, 
@@ -12,6 +18,7 @@ import {
 } from '../../graphql/mutations';
 import CommentIndex from '../comment/CommentIndex';
 import CommentForm from '../comment/CommentForm';
+
 
 export default class PhotoShow extends React.Component {
   constructor(props) {
@@ -75,6 +82,8 @@ export default class PhotoShow extends React.Component {
       variables: {
         photoId: this.props.match.params.photoId
       }
+    }).then(() => {
+      this.props.history.push('/feed');
     })
   }
 
@@ -119,7 +128,16 @@ export default class PhotoShow extends React.Component {
       return (
         <Mutation
           mutation={DELETE_PHOTO}
-          // update={(cache, data) => this.updateCache(cache, currentUser, { data })}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: { currentUserId: currentUser}
+            },
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
+            }
+          ]}
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>
@@ -231,6 +249,8 @@ export default class PhotoShow extends React.Component {
                 if (error) return <p>Error</p>
                 const { photo } = data;
 
+                if (!photo) return null;
+
                 return (
                   <div className="photo-show">
                     <div className="feed-index-item">
@@ -247,6 +267,7 @@ export default class PhotoShow extends React.Component {
                       <div className="feed-item-image-container">
                         <img
                           src={photo.photoUrl}
+                          alt=""
                         />
                         <div
                           id={`just-liked-modal-${photo._id}`}

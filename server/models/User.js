@@ -69,7 +69,7 @@ sortByDate = (photos) => {
 
 UserSchema.statics.feed = currentUserId => {
   const User = mongoose.model('users');
-  //you need to find a way to sort the returned photos from newest to oldest
+  
   return User.findById(currentUserId)
     .populate('photos')
     .populate({path: 'followedUsers', populate: { path: 'photos' }})
@@ -88,6 +88,15 @@ UserSchema.statics.feed = currentUserId => {
 
       return sortByDate(feedPhotos);
     })
+}
+
+UserSchema.statics.addProfileImg = (userId, imgUrl) => {
+  const User = mongoose.model('users');
+  
+  return User.findById(userId).then(user => {
+    user.profileImg = imgUrl;
+    return user.save();
+  })
 }
 
 module.exports = mongoose.model("users", UserSchema);

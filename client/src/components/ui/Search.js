@@ -2,6 +2,7 @@ import React from "react";
 import { ApolloConsumer } from "react-apollo";
 import { Link } from "react-router-dom";
 import { SEARCH_USERS } from '../../graphql/queries';
+import _ from 'lodash';
 
 
 class Search extends React.Component {
@@ -15,7 +16,7 @@ class Search extends React.Component {
     };
   }
 
-  searchUsers = async (client, filter) => {
+  searchUsers = _.debounce(async (client, filter) => {
     if (filter.length === 0) {
       this.setState({ users: [], empty: true, filter });
       return null;
@@ -27,7 +28,7 @@ class Search extends React.Component {
       });
       this.setState({ users: data.searchUsers, searching: false });
     }
-  }
+  }, 50)
 
   renderResults = client => {
     if (this.state.users.length > 0) {
@@ -44,8 +45,6 @@ class Search extends React.Component {
           </Link>
         )
       })
-    } else if (this.state.empty !== true && !this.state.searching) {
-      return <li className="results">No users found</li>
     }
   }
 
@@ -63,7 +62,9 @@ class Search extends React.Component {
                 />
 
                 <ul className="search-results">
-                  {this.renderResults(client)} 
+                  {!!this.state.users.length && (
+                    this.renderResults(client)
+                  )}
                 </ul>
             </div>
           )

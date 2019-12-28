@@ -7,7 +7,11 @@ class ThumbIndexItem extends React.Component {
 
     return (
       <li className="thumb-index-item">
-        <img src={thumb.photoUrl} onClick={() => this.props.history.push(`/photos/${thumb._id}`)} />
+        <img 
+          src={thumb.photoUrl} 
+          onClick={() => this.props.history.push(`/photos/${thumb._id}`)} 
+          alt=""
+        />
 
         <div className="thumb-index-item-modal" onClick={() => this.props.history.push(`/photos/${thumb._id}`)}>
           <p><i className="fas fa-music"></i> {thumb.likes.length}</p>

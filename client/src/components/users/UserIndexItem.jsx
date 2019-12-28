@@ -1,8 +1,8 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { ADD_FOLLOW, REMOVE_FOLLOW } from '../../graphql/mutations';
-import { EXPLORE_USERS } from '../../graphql/queries';
 import { Link } from 'react-router-dom';
+import { FEED, FETCH_USER } from '../../graphql/queries';
 
 export default class UserIndexItem extends React.Component {
 
@@ -41,7 +41,21 @@ export default class UserIndexItem extends React.Component {
 
     if (!this.followed(user.followers, currentUser)) {
       return (
-        <Mutation mutation={ADD_FOLLOW}>
+        <Mutation 
+          mutation={ADD_FOLLOW}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: {
+                currentUserId: currentUser
+              }
+            },
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
+            }
+          ]}
+        >
           {addFollow => (
             <button
               className="follow-button"
@@ -54,7 +68,21 @@ export default class UserIndexItem extends React.Component {
       )
     } else {
       return (
-        <Mutation mutation={REMOVE_FOLLOW}>
+        <Mutation 
+          mutation={REMOVE_FOLLOW}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: {
+                currentUserId: currentUser
+              }
+            },
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
+            }
+          ]}
+        >
           {removeFollow => (
             <button
               className="follow-button"
@@ -78,6 +106,7 @@ export default class UserIndexItem extends React.Component {
             src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
             width="100px"
             height="100px"
+            alt=""
           />
         </div>
         <Link to={`/users/${user._id}`}>

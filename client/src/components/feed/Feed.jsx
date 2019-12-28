@@ -30,6 +30,8 @@ export default class Feed extends React.Component {
 
                 const { feed } = data;
 
+                if (!feed.length) this.props.history.push('/explore');
+
                 return (
                   <div className="feed-container">
                     <FeedIndex photos={feed} currentUser={currentUser}/>

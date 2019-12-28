@@ -173,6 +173,7 @@ class FeedIndexItem extends React.Component {
         <div className="feed-item-image-container">
           <img
             src={photo.photoUrl}
+            alt=""
           />
           <div 
             id={`just-liked-modal-${photo._id}`} 
