@@ -1,6 +1,4 @@
 import React from 'react';
-import { Query } from 'react-apollo';
-import { CURRENT_USER } from '../../graphql/queries'
 import FeedIndexItem from './FeedIndexItem';
 
 export default class FeedIndex extends React.Component {

@@ -98,6 +98,7 @@ export default class UserIndexItem extends React.Component {
             src={user.profileImg || 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'}
             width="100px"
             height="100px"
+            alt=""
           />
         </div>
         <Link to={`/users/${user._id}`}>
