@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img height="200px" src="https://github.com/eliraybon/synthagram/client/public/synthagram-favicon.png">
+    <img height="200px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/synthagram-favicon.png">
   </a>
 </p>
 
