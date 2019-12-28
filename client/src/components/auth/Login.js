@@ -34,6 +34,16 @@ class Login extends Component {
     });
   }
 
+  handleDemoLogin = (e, loginUser) => {
+    e.preventDefault();
+    loginUser({
+      variables: {
+        username: 'demoUser',
+        password: 'lola12'
+      }
+    });
+  }
+
   render() {
     return (
       <Mutation
@@ -80,6 +90,12 @@ class Login extends Component {
                 />
   
                 <button className="auth-button">Log In</button>
+                {/* <button 
+                  className="auth-button"
+                  onClick={e => this.handleDemoLogin(e, loginUser)}
+                >
+                  Demo
+                </button> */}
                 <p className="auth-error-messages">{message}</p>
               </form>
 
@@ -92,6 +108,13 @@ class Login extends Component {
                   >
                     Sign Up
                   </Link>
+                </p>
+                <p className="auth-form-text">or</p>
+                <p 
+                  className="auth-form-text auth-form-link"
+                  onClick={e => this.handleDemoLogin(e, loginUser)}
+                >
+                    Log in as demo user
                 </p>
               </div>
             </div>
