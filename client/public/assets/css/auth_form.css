@@ -83,6 +83,15 @@
   margin-left: 10px;
 }
 
+.auth-error-outline {
+  border: 1px solid red;
+}
+
+.auth-error-messages {
+  color: red;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 400px) {
   .auth-form-header {
     font-size: 35px;
