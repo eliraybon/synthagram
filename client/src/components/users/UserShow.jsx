@@ -44,6 +44,7 @@ export default class UserShow extends React.Component {
   }
 
   renderFollowButton = () => {
+    if (this.props.match.params.userId === this.state.currentUser) return null;
     return (
       <Mutation
         mutation={ADD_FOLLOW}
@@ -67,6 +68,7 @@ export default class UserShow extends React.Component {
   }
 
   renderUnfollowButton = () => {
+    if (this.props.match.params.userId === this.state.currentUser) return null;
     return (
       <Mutation
         mutation={REMOVE_FOLLOW}
