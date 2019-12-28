@@ -32,7 +32,6 @@ textarea {
 }
 
 .comment-index {
-  /* padding: 0px 20px; */
   font-size: 15px;
 }
 
@@ -40,7 +39,6 @@ textarea {
   display: flex;
   flex-direction: column;
   color: rgb(233, 233, 233);
-  /* margin: 20px 0px; */
   margin-top: 20px;
   margin-left: 15px;
   border-left: 1px solid rgba(164, 133, 184, 0.297);
@@ -58,10 +56,6 @@ textarea {
 .comment-buttons > * {
   margin-right: 10px;
   
-}
-
-.comment > .comment-index {
-  /* margin-top: 5px; */
 }
 
 .comment-author {

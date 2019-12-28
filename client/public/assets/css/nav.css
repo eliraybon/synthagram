@@ -25,13 +25,11 @@
 .nav-buttons {
   display: flex;
   font-size: 23px;
-  /* width: 100%; */
   justify-content: flex-end;
 }
 
 .nav-button {
   color: white;
-  /* margin-left: 20px; */
   margin: 10px;
 }
 
@@ -50,11 +48,37 @@
   width: 100%;
   height: 100%;
   padding: 0px 10px;
-  /* margin: 0px 10px; */
 }
 
 .search-results {
   background-color: white;
+}
+
+.search-result {
+  padding: 5px 20px;
+  background-color: white;
+  border: 1px solid lightgray;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.search-result img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 1px solid lightgray;
+  background-color: white;
+}
+
+.search-result:hover {
+  background-color: rgb(232, 232, 232);
 }
 
 @media only screen and (max-width: 400px) {

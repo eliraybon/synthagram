@@ -103,12 +103,12 @@ class Login extends Component {
                     Sign Up
                   </Link>
                 </p>
-                <p className="auth-form-text">or</p>
+                <p className="auth-form-or">or</p>
                 <p 
-                  className="auth-form-text auth-form-link"
+                  className="demo-login-link auth-form-link"
                   onClick={e => this.handleDemoLogin(e, loginUser)}
                 >
-                    Log in as demo user
+                    Demo Login
                 </p>
               </div>
             </div>

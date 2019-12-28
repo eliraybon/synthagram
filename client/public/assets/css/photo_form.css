@@ -14,7 +14,6 @@
   max-width: 400px;
   margin-top: 30px;
   padding-top: 15px;
-  /* border: 1px solid lightgray; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +23,6 @@
 .dropzone {
   width: 300px;
   height: 300px;
-  /* border: 1px solid rgb(160, 160, 160); */
   cursor: pointer;
   color: gray;
   text-align: center;
@@ -36,7 +34,6 @@
 }
 
 .dropzone:hover {
-  /* border: 1px solid rgb(109, 109, 109); */
   color: rgb(208, 208, 208);
 }
 
@@ -61,7 +58,6 @@
   height: 60px;
   margin-top: 15px;
   padding: 10px;
-  /* border: 1px solid rgb(24, 24, 24); */
   font-size: 14px;
   color: white;
   background-color: rgb(50, 50, 50);

@@ -40,6 +40,9 @@ class Search extends React.Component {
             onClick={() => this.searchUsers(client, "")}
           >
             <li className="search-result">
+              <img
+                src={user.profileImg}
+              />
               <p>{user.username}</p>
             </li>
           </Link>
@@ -63,7 +66,7 @@ class Search extends React.Component {
 
                 <ul className="search-results">
                   {!!this.state.users.length && (
-                    this.renderResults(client)
+                    this.renderResults(client).slice(0, 5)
                   )}
                 </ul>
             </div>

@@ -3,7 +3,7 @@ import $ from "jquery";
 import CommentIndex from '../comment/CommentIndex';
 import CommentForm from '../comment/CommentForm';
 import { Mutation } from 'react-apollo';
-import { FEED } from '../../graphql/queries';
+import { FEED, FETCH_USER } from '../../graphql/queries';
 import { ADD_LIKE, REMOVE_LIKE, DELETE_PHOTO } from '../../graphql/mutations';
 import { withRouter, Link } from 'react-router-dom';
 
@@ -142,6 +142,12 @@ class FeedIndexItem extends React.Component {
         <Mutation
           mutation={DELETE_PHOTO}
           update={(cache, data) => this.updateCache(cache, currentUser, { data })}
+          refetchQueries={[
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
+            }
+          ]}
         >
           {deletePhoto => (
             <button onClick={(e => this.handleDelete(e, deletePhoto))}>
@@ -160,10 +166,11 @@ class FeedIndexItem extends React.Component {
     return (
       <li className="feed-index-item">
         <div className="feed-item-top">
-          <Link to={`/users/${photo.user._id}`}>
-             <div className="feed-item-profile-photo">
-               {/* <img /> */}
-             </div>
+          <Link to={`/users/${photo.user._id}`} className="feed-item-pfp-link">
+             <img
+               className="feed-item-profile-photo"
+               src={photo.user.profileImg}
+             />
           </Link>
 
           <Link to={`/users/${photo.user._id}`}>
