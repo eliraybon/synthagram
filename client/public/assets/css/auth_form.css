@@ -81,6 +81,16 @@
   /* color: rgb(158, 116, 184); */
   font-weight: 700;
   margin-left: 10px;
+  cursor: pointer;
+}
+
+.auth-error-outline {
+  border: 1px solid red;
+}
+
+.auth-error-messages {
+  color: red;
+  margin-top: 10px;
 }
 
 @media screen and (max-width: 400px) {
