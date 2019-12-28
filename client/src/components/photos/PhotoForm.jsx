@@ -21,6 +21,7 @@ export default class PhotoForm extends React.Component {
 
   handleSubmit = (e, newPhoto) => {
     e.preventDefault();
+    this.setState({ message: "Uploading..." })
     if (this.state.submitted) return;
     this.setState({ submitted: true });
     if (this.state.content) {
@@ -144,7 +145,6 @@ export default class PhotoForm extends React.Component {
                   onSubmit={e => this.handleSubmit(e, newPhoto)}
                   encType="multipart/form-data"
                 >
-
                   <h2>Upload a Photo</h2>
 
                   
@@ -181,7 +181,7 @@ export default class PhotoForm extends React.Component {
                     Post
                   </button>
 
-                  <p>{this.state.message}</p>
+                  <p className="photo-message">{this.state.message}</p>
                 </form>
               )}
             </Mutation>
