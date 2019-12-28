@@ -90,12 +90,6 @@ class Login extends Component {
                 />
   
                 <button className="auth-button">Log In</button>
-                {/* <button 
-                  className="auth-button"
-                  onClick={e => this.handleDemoLogin(e, loginUser)}
-                >
-                  Demo
-                </button> */}
                 <p className="auth-error-messages">{message}</p>
               </form>
 
