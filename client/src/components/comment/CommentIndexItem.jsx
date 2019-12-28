@@ -4,6 +4,7 @@ import CommentIndex from './CommentIndex';
 import EditCommentForm from './EditCommentForm';
 import { DELETE_COMMENT } from '../../graphql/mutations';
 import { FEED } from '../../graphql/queries';
+import { Link } from 'react-router-dom';
 
 export default class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -30,7 +31,6 @@ export default class CommentIndexItem extends React.Component {
     const { comment, currentUser } = this.props;
     
     if (this.state.editing) {
-      //you'll nedd to pass this a cancel edit function as well to set editing state to false
       return (
         <EditCommentForm 
           comment={comment} 
@@ -41,7 +41,7 @@ export default class CommentIndexItem extends React.Component {
 
     return (
       <li className="comment">
-        <p><span className="comment-author">{comment.author.username}</span> {comment.body}</p>
+        <p><Link className="comment-author" to={`/users/${comment.author._id}`}>{comment.author.username}</Link> {comment.body}</p>
         <div className="comment-buttons">
           <button onClick={() => this.props.setReplyForm(comment)}>
             Reply
