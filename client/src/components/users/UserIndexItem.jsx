@@ -2,7 +2,7 @@ import React from 'react';
 import { Mutation } from 'react-apollo';
 import { ADD_FOLLOW, REMOVE_FOLLOW } from '../../graphql/mutations';
 import { Link } from 'react-router-dom';
-import { FEED } from '../../graphql/queries';
+import { FEED, FETCH_USER } from '../../graphql/queries';
 
 export default class UserIndexItem extends React.Component {
 
@@ -49,6 +49,10 @@ export default class UserIndexItem extends React.Component {
               variables: {
                 currentUserId: currentUser
               }
+            },
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
             }
           ]}
         >
@@ -72,6 +76,10 @@ export default class UserIndexItem extends React.Component {
               variables: {
                 currentUserId: currentUser
               }
+            },
+            {
+              query: FETCH_USER,
+              variables: { _id: currentUser }
             }
           ]}
         >

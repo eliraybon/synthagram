@@ -52,6 +52,10 @@ export default class UserShow extends React.Component {
           {
             query: FEED,
             variables: { currentUserId: this.state.currentUser }
+          },
+          {
+            query: FETCH_USER,
+            variables: { _id: this.state.currentUser }
           }
         ]}
       >
@@ -76,6 +80,10 @@ export default class UserShow extends React.Component {
           {
             query: FEED,
             variables: { currentUserId: this.state.currentUser }
+          },
+          {
+            query: FETCH_USER,
+            variables: { _id: this.state.currentUser }
           }
         ]}
       >
