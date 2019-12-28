@@ -49,7 +49,6 @@ class Search extends React.Component {
   }
 
   render() {
-    debugger;
     return (
       <ApolloConsumer>
         {(client) => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { UPDATE_COMMENT } from '../../graphql/mutations';
-import { FEED } from '../../graphql/queries';
 
 export default class EditCommentForm extends React.Component {
   constructor(props) {

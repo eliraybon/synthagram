@@ -1,8 +1,8 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { ADD_FOLLOW, REMOVE_FOLLOW } from '../../graphql/mutations';
-import { EXPLORE_USERS } from '../../graphql/queries';
 import { Link } from 'react-router-dom';
+import { FEED } from '../../graphql/queries';
 
 export default class UserIndexItem extends React.Component {
 
@@ -41,7 +41,17 @@ export default class UserIndexItem extends React.Component {
 
     if (!this.followed(user.followers, currentUser)) {
       return (
-        <Mutation mutation={ADD_FOLLOW}>
+        <Mutation 
+          mutation={ADD_FOLLOW}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: {
+                currentUserId: currentUser
+              }
+            }
+          ]}
+        >
           {addFollow => (
             <button
               className="follow-button"
@@ -54,7 +64,17 @@ export default class UserIndexItem extends React.Component {
       )
     } else {
       return (
-        <Mutation mutation={REMOVE_FOLLOW}>
+        <Mutation 
+          mutation={REMOVE_FOLLOW}
+          refetchQueries={[
+            {
+              query: FEED,
+              variables: {
+                currentUserId: currentUser
+              }
+            }
+          ]}
+        >
           {removeFollow => (
             <button
               className="follow-button"
