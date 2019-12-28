@@ -3,7 +3,7 @@ import axios from 'axios';
 import Dropzone from 'react-dropzone';
 import { Query, Mutation } from 'react-apollo';
 
-import { CURRENT_USER, FEED } from '../../graphql/queries';
+import { CURRENT_USER, FEED, FETCH_USER } from '../../graphql/queries';
 import { NEW_PHOTO } from '../../graphql/mutations';
 
 export default class PhotoForm extends React.Component {
@@ -93,9 +93,6 @@ export default class PhotoForm extends React.Component {
   }
 
   onDrop = async files => {
-    //original simple code: 
-    // this.setState({ content: files[0] });
-
     const file = files[0]
     if (!this.validateFile(file)) {
       this.setState({ message: "Invalid file", previewImg: null, content: null });
@@ -134,14 +131,12 @@ export default class PhotoForm extends React.Component {
             <Mutation
               mutation={NEW_PHOTO}
               update={(cache, data) => this.updateCache(cache, { data })}
-              // refetchQueries={[
-              //   {
-              //     query: FEED,
-              //     variables: {
-              //     currentUserId: this.state.user
-              //     }
-              //   }
-              // ]}
+              refetchQueries={[
+                {
+                  query: FETCH_USER,
+                  variables: { _id: this.state.user }
+                }
+              ]}
             >
               {newPhoto => (
                 <form
