@@ -170,7 +170,6 @@ export default class PhotoForm extends React.Component {
 
                   <textarea
                     className='form-input'
-                    // type="text"
                     value={this.state.body}
                     onChange={this.update('body')}
                     placeholder='Caption this photo'
@@ -178,10 +177,10 @@ export default class PhotoForm extends React.Component {
                   </div>
 
                   <button className='post-form-button'>
-                    Post
+                    {this.state.message || "Post"}
                   </button>
 
-                  <p className="photo-message">{this.state.message}</p>
+                  <p className="nehehe"></p>
                 </form>
               )}
             </Mutation>

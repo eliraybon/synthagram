@@ -17,6 +17,7 @@ export const SEARCH_USERS = gql`
     searchUsers(filter: $filter) {
       _id
       username
+      profileImg
     }
   }
 `;
@@ -30,6 +31,7 @@ export const FEED = gql`
       user {
         _id
         username
+        profileImg
       }
       likes
       comments {
