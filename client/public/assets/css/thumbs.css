@@ -17,13 +17,14 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
+  max-height: 100%;
   position: relative;
 }
 
 .thumb-index-item img {
   object-fit: cover;
+  height: 30vw;
   width: 100%;
-  height: 100%;
 }
 
 .thumb-index-item-hidden {
@@ -63,9 +64,20 @@
     grid-gap: 0vw;
     padding: 0vw;
     width: 100%;
+    height:100%;
   }
   .thumb-index-item {
     border: 1px solid black;
+    width: 100%;
+    height: 33.33vw;
+  }
+
+  .thumb-index-item img {
+    height: 33.33vw;
+  }
+
+  .thumb-index-item-modal {
+    display: none;
   }
 }
 

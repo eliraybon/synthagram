@@ -61,6 +61,8 @@
   font-weight: 700;
   padding: 7px;
   margin-top: 30px;
+  height: 32px;
+  min-height: 32px;
 }
 
 .auth-form-bottom {

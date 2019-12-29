@@ -250,16 +250,17 @@ export default class PhotoShow extends React.Component {
                 const { photo } = data;
 
                 if (!photo) return null;
-
+              
                 return (
                   <div className="photo-show">
                     <div className="feed-index-item">
                       <div className="feed-item-top">
-                        <Link to={`/users/${photo.user._id}`}>
-                          <div className="feed-item-profile-photo">
-                            {/* <img /> */}
-                          </div>
-                        </Link>
+                        <span className="feed-item-pfp-link">
+                          <img
+                            className="feed-item-profile-photo"
+                            src={photo.user.profileImg}
+                          />
+                        </span>
                         <Link to={`/users/${photo.user._id}`}>
                           <p className="feed-item-username">{photo.user.username}</p>
                         </Link>
