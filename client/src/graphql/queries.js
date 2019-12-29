@@ -121,6 +121,7 @@ export const FETCH_PHOTO = gql`
       user {
         _id
         username
+        profileImg
         followers {
           _id
         }

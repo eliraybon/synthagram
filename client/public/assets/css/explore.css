@@ -54,6 +54,8 @@
   border-radius: 5px;
   font-weight: 600;
   margin-top: 10px;
+  height: 27px;
+  min-height: 27px;
 }
 
 /* 930px */
