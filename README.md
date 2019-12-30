@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="">
+  <a href="http://synthagram.herokuapp.com/">
     <img height="200px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/synthagram-favicon.png">
   </a>
 </p>
@@ -7,7 +7,7 @@
 
 # <h1 align="center">Synthagram</h1>
 
-[Live Link]()
+[Live Link](http://synthagram.herokuapp.com/)
 
 Synthagram is a music-themed clone of Instagram built with the MERN stack + GraphQL/Apollo. The design is simple, clean, and mobile-first, resulting in an app that is responsive across all screen sizes. 
 
