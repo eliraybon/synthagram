@@ -48,7 +48,7 @@ export default class Explore extends React.Component {
                   const { explorePhotos } = data;
 
                   return (
-                    <ThumbIndex thumbs={explorePhotos} />
+                    <ThumbIndex thumbs={Array.from(explorePhotos).reverse()} />
                   )
                 }}
               </Query>

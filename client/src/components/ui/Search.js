@@ -42,6 +42,7 @@ class Search extends React.Component {
             <li className="search-result">
               <img
                 src={user.profileImg}
+                alt=""
               />
               <p>{user.username}</p>
             </li>

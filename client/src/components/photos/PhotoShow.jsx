@@ -259,6 +259,7 @@ export default class PhotoShow extends React.Component {
                           <img
                             className="feed-item-profile-photo"
                             src={photo.user.profileImg}
+                            alt=""
                           />
                         </span>
                         <Link to={`/users/${photo.user._id}`}>

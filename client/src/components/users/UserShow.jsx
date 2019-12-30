@@ -152,7 +152,7 @@ export default class UserShow extends React.Component {
                       </div>
                     </div>
 
-                    <ThumbIndex thumbs={user.photos} />
+                    <ThumbIndex thumbs={Array.from(user.photos).reverse()} />
                   </div>
                 )
               }}

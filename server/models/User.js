@@ -16,7 +16,8 @@ const UserSchema = new Schema({
     max: 32
   },
   profileImg: {
-    type: String
+    type: String,
+    default: 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'
   },
   photos: [{ type: Schema.Types.ObjectId, ref: "photos" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "photos" }],
@@ -55,16 +56,16 @@ UserSchema.statics.removeFollow = (unfollowingId, userId) => {
     })
 }
 
-sortByDate = (photos) => {
+sortByDate = photos => {
   if (photos.length < 2) return photos;
 
-  const pivot = photos[0];
-  let left = photos.slice(1).filter(photo => photo.created > pivot.created);
-  let right = photos.slice(1).filter(photo => photo.created <= pivot.created);
-  left = sortByDate(left);
-  right = sortByDate(right);
+  const pivotPhoto = photos[0];
+  let older = photos.slice(1).filter(photo => photo.created > pivotPhoto.created);
+  let newer = photos.slice(1).filter(photo => photo.created <= pivotPhoto.created);
+  older = sortByDate(older);
+  newer = sortByDate(newer);
 
-  return left.concat([pivot]).concat(right);
+  return older.concat([pivotPhoto]).concat(newer);
 } 
 
 UserSchema.statics.feed = currentUserId => {
