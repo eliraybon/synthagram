@@ -55,16 +55,16 @@ UserSchema.statics.removeFollow = (unfollowingId, userId) => {
     })
 }
 
-sortByDate = (photos) => {
+sortByDate = photos => {
   if (photos.length < 2) return photos;
 
-  const pivot = photos[0];
-  let left = photos.slice(1).filter(photo => photo.created > pivot.created);
-  let right = photos.slice(1).filter(photo => photo.created <= pivot.created);
-  left = sortByDate(left);
-  right = sortByDate(right);
+  const pivotPhoto = photos[0];
+  let older = photos.slice(1).filter(photo => photo.created > pivotPhoto.created);
+  let newer = photos.slice(1).filter(photo => photo.created <= pivotPhoto.created);
+  older = sortByDate(older);
+  newer = sortByDate(newer);
 
-  return left.concat([pivot]).concat(right);
+  return older.concat([pivotPhoto]).concat(newer);
 } 
 
 UserSchema.statics.feed = currentUserId => {
