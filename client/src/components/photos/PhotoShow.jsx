@@ -326,13 +326,12 @@ export default class PhotoShow extends React.Component {
 
                     <div className="photo-show-user-preview">
                       <Link to={`/users/${photo.user._id}`}>
-                        <div className="user-preview-photo-container">
-                        {/* <img 
+                        <img 
                           src={photo.user.profileImg} 
+                          className="user-preview-photo-container"
                           width="50px"
                           height="50px"
-                        /> */}
-                        </div>
+                        />
                       </Link>
 
                       <p className="user-preview-username"><Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link></p>
