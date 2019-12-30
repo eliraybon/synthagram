@@ -170,6 +170,7 @@ class FeedIndexItem extends React.Component {
              <img
                className="feed-item-profile-photo"
                src={photo.user.profileImg}
+               alt=""
              />
           </Link>
 
