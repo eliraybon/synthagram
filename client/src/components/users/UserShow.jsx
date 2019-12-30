@@ -124,7 +124,7 @@ export default class UserShow extends React.Component {
                 if (error) return <p>Error</p>
 
                 const { user } = data;
-                
+
                 return (
                   <div className="user-show">
                     <div className="user-show-top">
@@ -152,7 +152,7 @@ export default class UserShow extends React.Component {
                       </div>
                     </div>
 
-                    <ThumbIndex thumbs={user.photos} />
+                    <ThumbIndex thumbs={Array.from(user.photos).reverse()} />
                   </div>
                 )
               }}
