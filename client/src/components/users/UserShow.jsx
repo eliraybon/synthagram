@@ -124,7 +124,7 @@ export default class UserShow extends React.Component {
                 if (error) return <p>Error</p>
 
                 const { user } = data;
-
+                
                 return (
                   <div className="user-show">
                     <div className="user-show-top">

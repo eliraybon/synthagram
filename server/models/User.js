@@ -16,7 +16,8 @@ const UserSchema = new Schema({
     max: 32
   },
   profileImg: {
-    type: String
+    type: String,
+    default: 'https://us.123rf.com/450wm/burntime555/burntime5551505/burntime555150500105/40328001-music-note-flat-web-icon-or-sign-isolated-on-grey-background-collection-modern-trend-concept-design-.jpg?ver=6'
   },
   photos: [{ type: Schema.Types.ObjectId, ref: "photos" }],
   likes: [{ type: Schema.Types.ObjectId, ref: "photos" }],
