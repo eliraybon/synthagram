@@ -27,6 +27,8 @@ Created by Alex Lee and Eli Raybon over 3 days.
   <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/feed2.PNG">
 </p>
 
+The photos above give you a quick look at the main feed of Synthagram. Your feed is populated by the most recent photos of the users that you follow. You can double-tap a photo to like it, which triggers an animation.  
+
 Photos in the feed are sorted using a recurive quicksort algorithm. 
 
 ```js
@@ -43,7 +45,25 @@ sortByDate = photos => {
 } 
 ```
 
-//show images and discuss comments and nested replies
+From your feed, you quickly jump to the profile of a particular user, where can can browse all of their synthtastic snaps.
+
+<p align="center">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/profile1.PNG">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/profile2.PNG">
+</p>
+
+
+If you don't have enough synths to look at, you can head over to the explore page using the compass icon in the navbar. There, you will be served an index of users you might want to follow as well as more musical madness. 
+
+<p align="center">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/explore.PNG">
+</p>
+
+Along with liking photos, you can also leave comments on them, as well as reply to comments. 
+
+<p align="center">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/comments.PNG">
+</p>
 
 The biggest backend challenge we ran into was deleting comments. Sounds simple right? But a comment can't simply be deleted from the database or it would leave behind several ghost references in its corresponding user and photo documents. Those are easy enough to clean up, so what's the big deal? Replies! When a comment is deleted, all of its replies also need to be deleted, and all of the replies of the replies. On and on and on. Sounds like a recursion problem! 
 
