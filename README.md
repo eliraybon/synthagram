@@ -22,7 +22,10 @@ Created by Alex Lee and Eli Raybon over 3 days.
 -  Search Bar
 -  User Authentication
 
-//show images of and discuss feed
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/client/public/assets/images/feed1.PNG">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/client/public/assets/images/feed2.PNG">
+</p>
 
 Photos in the feed are sorted using a recurive quicksort algorithm. 
 
