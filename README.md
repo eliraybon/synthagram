@@ -59,7 +59,7 @@ If you don't have enough synths to look at, you can head over to the explore pag
   <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/explore.PNG">
 </p>
 
-Users can post their own pictures using the drag and drop file uplaoder (desktop) or by tapping the upload box (mobile). The uploader gives mobile users access to their camera roll so they can easily uplaod photos. Once a photo is chosen, users are given a preview to make sure everything looks good before posting!
+You can post your own pictures using the drag and drop file uplaoder (desktop) or by tapping the upload box (mobile). On mobile, the uploader gives you easy access to your camera roll. Once a photo is chosen, you're given a preview to make sure everything looks good before posting!
 
 <p align="center">
   <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/post1.PNG">
