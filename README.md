@@ -23,8 +23,8 @@ Created by Alex Lee and Eli Raybon over 3 days.
 -  User Authentication
 
 <p align="center">
-  <img height="200px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/feed1.PNG">
-  <img height="200px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/feed2.PNG">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/feed1.PNG">
+  <img height="600px" src="https://github.com/eliraybon/synthagram/blob/master/client/public/assets/images/feed2.PNG">
 </p>
 
 Photos in the feed are sorted using a recurive quicksort algorithm. 
