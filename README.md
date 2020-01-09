@@ -114,7 +114,7 @@ async function removeNestedReplies(rootComment) {
 - Apollo
 - Dropzone
 - AWS S3
-- Multer (for uplaoding to S3)
+- Multer (for uploading to S3)
 - BCrypt (for user auth)
 - HTML
 - CSS 
