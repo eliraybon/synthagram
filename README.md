@@ -13,6 +13,21 @@ Synthagram is a music-themed clone of Instagram built with the MERN stack + Grap
 
 Created by Alex Lee and Eli Raybon over 3 days. 
 
+## Technologies 
+React, Node, MongoDB, Express, GraphQL, Apollo, Dropzone, AWS S3, Multer (for S3 uploads), BCrypt (for user auth), HTML, CSS
+- React
+- Node
+- MongoDB
+- Express
+- GraphQL
+- Apollo
+- Dropzone
+- AWS S3
+- Multer (for uploading to S3)
+- BCrypt (for user auth)
+- HTML
+- CSS 
+
 ## Features
 -  Drag n' drop file uploads
 -  Photo upload previews
@@ -104,20 +119,5 @@ async function removeNestedReplies(rootComment) {
   return removeSingleComment(rootComment);
 };
 ```
-
-## Technologies 
-- React
-- Node
-- MongoDB
-- Express
-- GraphQL
-- Apollo
-- Dropzone
-- AWS S3
-- Multer (for uploading to S3)
-- BCrypt (for user auth)
-- HTML
-- CSS 
-
 
 
