@@ -179,7 +179,8 @@ export default class PhotoShow extends React.Component {
     return followed;
   }
 
-  renderFollowButton = () => {
+  renderFollowButton = (currentUser, photoUserId) => {
+    if (currentUser === photoUserId) return null;
     return (
       <Mutation
         mutation={ADD_FOLLOW}
@@ -202,7 +203,8 @@ export default class PhotoShow extends React.Component {
     )
   }
 
-  renderUnfollowButton = () => {
+  renderUnfollowButton = (currentUser, photoUserId) => {
+    if (currentUser === photoUserId) return null;
     return (
       <Mutation
         mutation={REMOVE_FOLLOW}
@@ -337,7 +339,8 @@ export default class PhotoShow extends React.Component {
                       <p className="user-preview-username"><Link to={`/users/${photo.user._id}`}>{photo.user.username}</Link></p>
 
                       {(!this.followed(photo.user.followers, currentUser)) ?
-                        this.renderFollowButton() : this.renderUnfollowButton()
+                        this.renderFollowButton(currentUser, photo.user._id) : 
+                          this.renderUnfollowButton(currentUser, photo.user._id)
                       }
 
                       <p>{photo.user.photos.length} Posts</p>
