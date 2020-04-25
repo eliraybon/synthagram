@@ -27,7 +27,7 @@ export default class PhotoForm extends React.Component {
     if (this.state.content) {
       const formData = new FormData();
       formData.append('photo', this.state.content, this.state.content.name);
-
+      //production version: '/files/upload'
       //localhost version: http://localhost:5000/files/upload
       axios.post('/files/upload', formData)
         .then(res => {
